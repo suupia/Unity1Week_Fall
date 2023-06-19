@@ -1,6 +1,6 @@
 ﻿
 
-namespace GameSystem.Interfaces
+namespace Projects.GameSystem.Interfaces
 {
     public enum GameState
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystem.Fruit.Scripts
+namespace Projects.Fruit.Scripts
 {
     public class FruitSpawner
     {

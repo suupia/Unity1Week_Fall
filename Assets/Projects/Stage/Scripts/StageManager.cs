@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystem.Stage.Scripts
+namespace Projects.Stage.Scripts
 {
     public class StageManager
     {
