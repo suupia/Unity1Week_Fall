@@ -4,6 +4,7 @@ using GameSystem.Interfaces;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
+using GameSystem.Stage.Scripts;
 
 namespace GameSystem.Scripts
 {
