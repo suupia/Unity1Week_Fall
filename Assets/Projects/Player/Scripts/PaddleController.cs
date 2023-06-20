@@ -14,7 +14,7 @@ namespace Projects.Player.Scripts
 {
     public class PaddleController : MonoBehaviour
     {
-        float speed = 0.018f;
+        float speed = 20f;
         float forceAmount = 30f;
 
         [SerializeField] GameObject paddleObj; // widthを取るために必要 localScale.xで取得している
@@ -39,7 +39,9 @@ namespace Projects.Player.Scripts
 
         void Move(float hInput)
         {
-            transform.position += new Vector3(hInput * speed, 0);
+           //  transform.position += new Vector3(hInput * speed, 0);
+           var translation = new Vector3(hInput * speed, 0, 0);
+           transform.Translate(translation * Time.deltaTime);
         }
         bool CanMove(float hInput)
         {

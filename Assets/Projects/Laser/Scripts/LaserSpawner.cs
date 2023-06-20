@@ -3,6 +3,7 @@ using Projects.Fruit.Scripts;
 using Projects.Stage.Scripts;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Analytics;
 using VContainer;
 using VContainer.Unity;
 
@@ -35,9 +36,12 @@ namespace Projects.Ground.Scripts
         void Spawn()
         {
             // ToDo : 高さを正確に決める
-            for (int i = 0; i < 3; i++)
+            float initHeight = -0.3f;
+            float interval = 2.0f;
+            int laserCount = 2;
+            for (int i = 0; i < laserCount; i++)
             {
-                var spawnPosition = new Vector2(0, i * 2);
+                var spawnPosition = new Vector2(0, initHeight + i * interval);
                 var laserObj = _laserCreator.Create();
                 _resolver.Instantiate(laserObj,spawnPosition,Quaternion.identity);
             }

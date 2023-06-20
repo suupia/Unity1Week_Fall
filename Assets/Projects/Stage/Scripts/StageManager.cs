@@ -9,7 +9,7 @@ namespace Projects.Stage.Scripts
         public float StageWidth => _stageWidth;
         public float PaddleWidth => _stageWidth - 1;
         public float HorizontalMargin => 0;
-        float _stageWidth = 15;
+        float _stageWidth = 14;
     }
 
 }
