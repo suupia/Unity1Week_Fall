@@ -36,9 +36,9 @@ namespace Projects.Ground.Scripts
         void Spawn()
         {
             // ToDo : 高さを正確に決める
-            float initHeight = -0.3f;
+            float initHeight = 1.4f;
             float interval = 2.0f;
-            int laserCount = 2;
+            int laserCount = 1;
             for (int i = 0; i < laserCount; i++)
             {
                 var spawnPosition = new Vector2(0, initHeight + i * interval);
