@@ -19,7 +19,10 @@ namespace Projects.Ground.Scripts
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.GetComponent<FruitController>() is { } fruitController) fruitController.Fruit.OnEnterBasket();
+            if (other.GetComponent<FruitController>() is { } fruitController)
+            {
+                fruitController.Fruit.OnEnterBasket();
+            }
         }
     }
 }

@@ -19,18 +19,18 @@ namespace Projects.Fruit.Scripts
     {
         readonly IObjectResolver _resolver;
         readonly StageManager _stageManager;
-        readonly FruitCreator _fruitCreator;
+        readonly FruitControllerBuilder _fruitControllerBuilder;
         
         readonly float _spawnIntervalSeconds = 1.0f;
         
         IDisposable _spawnSubscription;
         
         [Inject]
-        public FruitSpawner(IObjectResolver resolver, StageManager stageManager,FruitCreator fruitCreator)
+        public FruitSpawner(IObjectResolver resolver, StageManager stageManager,FruitControllerBuilder fruitControllerBuilder)
         {
             _resolver = resolver;
             _stageManager = stageManager;
-            _fruitCreator = fruitCreator;
+            _fruitControllerBuilder = fruitControllerBuilder;
         }
         public void Dispose()
         {
@@ -43,6 +43,18 @@ namespace Projects.Fruit.Scripts
                 .ThrottleFirst(TimeSpan.FromSeconds(_spawnIntervalSeconds))
                 .Subscribe(_ => Spawn());
         }
+        void Spawn()
+        {
+            var randomType = RandomType();
+            var randomPosition = RandomPosition();
+            _fruitControllerBuilder.Build(RandomType(), RandomPosition());
+        }
+        FruitType RandomType()
+        {
+            var random = UnityEngine.Random.Range(0, 1.0f);
+            var type = random > 0.3f ? FruitType.Apple : FruitType.BadApple;
+            return type;
+        }
 
         Vector3 RandomPosition()
         {
@@ -52,13 +64,7 @@ namespace Projects.Fruit.Scripts
             var height = 4.0f;
             return new Vector3(randomX, height, 0);
         }
-        void Spawn()
-        {
-            var randomPosition = RandomPosition();
-            // Debug.Log($"randomPosition:{randomPosition}");
-            var fruitObj = _fruitCreator.Create(FruitType.Apple);
-            _resolver.Instantiate(fruitObj,randomPosition,Quaternion.identity);
-        }
+        
     }
 
 }

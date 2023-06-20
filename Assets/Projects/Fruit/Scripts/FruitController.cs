@@ -21,15 +21,13 @@ namespace Projects.Fruit.Scripts
         
         IFruit _fruit;
         
-        [Inject]
-        public void Construct(IFruit fruit)
+        public void Init(IFruit fruit)
         {
             _fruit = fruit;
-
             this.UpdateAsObservable()
                 .Where(_ => transform.position.y <= _destroyHeight)
                 .Subscribe(_ => Destroy(gameObject));
         }
-        
+
     }
 }

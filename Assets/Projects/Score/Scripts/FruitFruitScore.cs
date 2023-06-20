@@ -12,7 +12,7 @@ namespace  Projects.Score.Script
         }
         public void DecreaseScore(int value)
         {
-            value -= value;
+            Value -= value;
         }
     }
 }

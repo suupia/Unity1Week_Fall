@@ -32,10 +32,11 @@ namespace Projects.GameSystem.Scripts
             builder.Register<StageManager>(Lifetime.Singleton);
             
             // Fruits
-            builder.Register<Apple>(Lifetime.Singleton).As<IFruit>(); // ToDo: Tmp
-            builder.Register<FruitCreator>(Lifetime.Singleton);
+            builder.Register<FruitFactory>(Lifetime.Singleton);
+            builder.Register<FruitControllerLoader>(Lifetime.Singleton);
+            builder.Register<FruitControllerBuilder>(Lifetime.Singleton);
             builder.Register<FruitSpawner>(Lifetime.Singleton);
-            
+
             // Laser
             builder.Register<LaserCreator>(Lifetime.Singleton);
             builder.Register<LaserSpawner>(Lifetime.Singleton);

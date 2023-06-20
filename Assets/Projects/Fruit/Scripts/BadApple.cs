@@ -12,7 +12,7 @@ using VContainer.Unity;
 # nullable enable
 namespace Projects.Fruit.Scripts
 {
-    public class Apple : IFruit
+    public class BadApple : IFruit
     {
         readonly IObjectResolver _resolver;
         readonly FruitControllerLoader _fruitControllerLoader;
@@ -20,7 +20,7 @@ namespace Projects.Fruit.Scripts
         
         readonly int _scoreAmount = 10;
         [Inject]
-        public  Apple(IObjectResolver resolver)
+        public  BadApple(IObjectResolver resolver)
         {
             _resolver = resolver;
             _fruitControllerLoader = resolver.Resolve<FruitControllerLoader>();
@@ -29,16 +29,16 @@ namespace Projects.Fruit.Scripts
         }
         public void OnEnterBasket()
         {
-            Debug.Log($"Appleを取得");
-            _fruitScore.IncreaseScore(_scoreAmount);
+            Debug.Log($"BadAppleを取得");
+            _fruitScore.DecreaseScore(_scoreAmount);
         }
         
         // ドメインスクリプトがMonoの要素に依存しているのはよくないかもと思ったので、Transformは引数で受け取るようにした
         public void Amplify(Transform transform)
         {
-            Debug.Log($"Appleが増加しました");
+            Debug.Log($"BadAppleが増加しました");
             var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
-            fruitBuilder.Build(FruitType.Apple,transform.position);
+            fruitBuilder.Build(FruitType.BadApple,transform.position);
         }
     }
 }
