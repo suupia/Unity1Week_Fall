@@ -9,6 +9,9 @@ using VContainer;
 using VContainer.Unity;
 using Projects.Stage.Scripts;
 using Projects.Utility;
+using Projects.Score.Interfaces;
+using Projects.Score.Script;
+
 
 namespace Projects.GameSystem.Scripts
 {
@@ -36,6 +39,9 @@ namespace Projects.GameSystem.Scripts
             // Laser
             builder.Register<LaserCreator>(Lifetime.Singleton);
             builder.Register<LaserSpawner>(Lifetime.Singleton);
+            
+            // Score
+            builder.Register<FruitFruitScore>(Lifetime.Singleton).As<IFruitScore>();
         }
     }
 }
