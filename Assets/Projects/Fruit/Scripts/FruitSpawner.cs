@@ -59,7 +59,7 @@ namespace Projects.Fruit.Scripts
         Vector3 RandomPosition()
         {
             var random = UnityEngine.Random.Range(0, 1.0f);
-            var sign = random > 0 ? 1 : -1;
+            var sign = random > 0.5f ? 1 : -1;
             var randomX = sign * random * _stageManager.StageWidth / 2;
             var height = 4.5f;
             return new Vector3(randomX, height, 0);
