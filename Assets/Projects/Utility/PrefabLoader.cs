@@ -23,8 +23,8 @@ namespace Projects.Utility
             var result = Resources.Load<T>(_folderPath + "/" + prefabName);
             if (result == null)
             {
-                Debug.LogError($"Failed to load prefab. folderPath ={_folderPath+"/"+prefabName} prefabName = {prefabName}");
-                return null;
+                Debug.LogError($"Failed to load prefab. folderPath={_folderPath+"/"+prefabName}, prefabName={prefabName}, T={typeof(T)}");
+                return default(T);
             }
             else
             {
