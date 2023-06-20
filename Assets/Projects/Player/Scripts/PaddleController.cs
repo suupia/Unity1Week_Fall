@@ -5,6 +5,8 @@ using UnityEngine;
 using Projects.GameSystem.Scripts;
 using Projects.GameSystem.Interfaces;
 using VContainer;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Projects.Player.Scripts
 {
@@ -22,36 +24,22 @@ namespace Projects.Player.Scripts
         {
             _gameState = gameState;
             _stageManager = stageManager;
+            
+            this.UpdateAsObservable()
+                .Where(_ => _gameState.CurrentState == GameState.Game)
+                .Select(_ => Input.GetAxisRaw("Horizontal"))
+                .Where(CanMove)
+                .Subscribe(Move)
+                .AddTo(this);
         }
+        
 
-        void Update()
+        private void Move(float hInput)
         {
-            if (_gameState.CurrentState != GameState.Game) return;
-            Move();
+            transform.position += new Vector3(hInput * speed, 0);
         }
 
-        private void Move()
-        {
-            float vInput = Input.GetAxisRaw("Vertical");
-            float hInput = Input.GetAxisRaw("Horizontal");
-
-            if (hInput != 0 || vInput != 0)
-            {
-                //Debug.Log("移動キーが入力されました。");
-
-                if (CanMove(hInput, vInput))
-                {
-                    transform.position += new Vector3(hInput * speed, vInput * speed);
-                }
-                else
-                {
-                    //Debug.Log($"GanMove({horizontalInput},{verticalInput}はfalseです)");
-                    return;
-                }
-            }
-        }
-
-        private bool CanMove(float hInput, float vInput)
+        private bool CanMove(float hInput)
         {
             if (hInput > 0 && transform.position.x >= _stageManager.StageWidth / 2.0f -
                 paddleObj.transform.localScale.x / 2.0f - _stageManager.HorizontalMargin)
