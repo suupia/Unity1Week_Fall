@@ -8,6 +8,7 @@ using VContainer.Unity;
 using UniRx;
 using UniRx.Triggers;
 using Object = UnityEngine.Object;
+using Random = Unity.Mathematics.Random;
 
 namespace Projects.Fruit.Scripts
 {
@@ -48,12 +49,16 @@ namespace Projects.Fruit.Scripts
 
         Vector3 RandomPosition()
         {
-            // ToDo: 実装
-            return new Vector3(0, 3.5f, 0);
+            var random = UnityEngine.Random.Range(0, 1.0f);
+            var sign = random > 0 ? 1 : -1;
+            var randomX = sign * random * _stageManager.StageWidth / 2;
+            var height = 4.0f;
+            return new Vector3(randomX, height, 0);
         }
         void Spawn()
         {
             var randomPosition = RandomPosition();
+            Debug.Log($"randomPosition:{randomPosition}");
             var fruitObj = _fruitCreator.Create(FruitType.Apple);
             _resolver.Instantiate(fruitObj,randomPosition,Quaternion.identity);
         }
