@@ -25,7 +25,7 @@ namespace Projects.Player.Scripts
             _gameState = gameState;
             _stageManager = stageManager;
             
-            this.UpdateAsObservable()
+            Observable.EveryUpdate()
                 .Where(_ => _gameState.CurrentState == GameState.Game)
                 .Select(_ => Input.GetAxisRaw("Horizontal"))
                 .Where(CanMove)

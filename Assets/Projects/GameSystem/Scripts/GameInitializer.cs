@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
 using Projects.GameSystem.Interfaces;
+using Projects.Ground.Scripts;
 using Projects.Utility;
 using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine;
@@ -16,9 +17,11 @@ namespace Projects.GameSystem.Scripts
     public class GameInitializer : MonoBehaviour
     {
         [Inject] FruitSpawner _fruitSpawner;
+        [Inject] LaserSpawner _laserSpawner;
         void Start()
         {
             _fruitSpawner.StartSpawn();
+            _laserSpawner.StartSpawn();
         }
     }
 }

@@ -9,11 +9,12 @@ using UniRx;
 using UniRx.Triggers;
 using Object = UnityEngine.Object;
 using Random = Unity.Mathematics.Random;
-
+# nullable enable
 namespace Projects.Fruit.Scripts
 {
-    // AutoInjectする
-    // ステージ状にランダムにフルーツを生成する
+    /// <summary>
+    /// ステージ状にランダムにフルーツを生成する
+    /// </summary>
     public class FruitSpawner : IDisposable 
     {
         readonly IObjectResolver _resolver;
@@ -31,10 +32,6 @@ namespace Projects.Fruit.Scripts
             _stageManager = stageManager;
             _fruitCreator = fruitCreator;
         }
-        // Resourceフォルダからフルーツプレハブを読み込む
-    
-        // 読み込んだフルーツ対してドメインスクリプトを付与する
-        
         public void Dispose()
         {
             _spawnSubscription.Dispose();
@@ -42,7 +39,7 @@ namespace Projects.Fruit.Scripts
 
         public void StartSpawn()
         {
-            Observable.EveryUpdate()
+            _spawnSubscription = Observable.EveryUpdate()
                 .ThrottleFirst(TimeSpan.FromSeconds(_spawnIntervalSeconds))
                 .Subscribe(_ => Spawn());
         }

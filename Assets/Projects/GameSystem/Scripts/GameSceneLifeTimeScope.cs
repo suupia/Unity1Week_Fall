@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
 using Projects.GameSystem.Interfaces;
+using Projects.Ground.Scripts;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -15,11 +16,13 @@ namespace Projects.GameSystem.Scripts
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            // Utility
+            // IPrefabLoader
             builder.Register<PrefabLoaderFromResources<Sprite>>(Lifetime.Singleton).As<IPrefabLoader<Sprite>>()
                 .WithParameter("folderPath", "Sprites/Fruits");
             builder.Register<PrefabLoaderFromResources<FruitController>>(Lifetime.Singleton)
                 .As<IPrefabLoader<FruitController>>().WithParameter("folderPath", "Prefabs/Fruits");
+            builder.Register<PrefabLoaderFromResources<LaserController>>(Lifetime.Singleton)
+                .As<IPrefabLoader<LaserController>>().WithParameter("folderPath", "Prefabs/Lasers");
             
             // GameSystem
             builder.Register<InGameStateManager>(Lifetime.Singleton).As<IGameState>(); // ToDo: Tmp
@@ -29,6 +32,10 @@ namespace Projects.GameSystem.Scripts
             builder.Register<Apple>(Lifetime.Singleton).As<IFruit>(); // ToDo: Tmp
             builder.Register<FruitCreator>(Lifetime.Singleton);
             builder.Register<FruitSpawner>(Lifetime.Singleton);
+            
+            // Laser
+            builder.Register<LaserCreator>(Lifetime.Singleton);
+            builder.Register<LaserSpawner>(Lifetime.Singleton);
         }
     }
 }
