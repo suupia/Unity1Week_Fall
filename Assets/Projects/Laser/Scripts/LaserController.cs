@@ -34,11 +34,12 @@ public class LaserController : MonoBehaviour
         var position = new Vector2(positionX, transform.position.y);
 
         // Raycast
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, range);
-        
-        // If the raycast hit something
-        if (hit.collider != null)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(position, direction, range);
+    
+        // Loop over every object that the raycast hit
+        foreach (var hit in hits)
         {
+            // If the hit object has a FruitController, call Amplify on it
             if (hit.collider.GetComponent<FruitController>() is { } fruitController)
                 fruitController.Fruit.Amplify(fruitController.transform);
         }
