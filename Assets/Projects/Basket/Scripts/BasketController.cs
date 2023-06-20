@@ -7,7 +7,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Projects. Ground.Scripts
+namespace Projects.Ground.Scripts
 {
     // AutoInjectする
     public class BasketController : MonoBehaviour
@@ -15,12 +15,11 @@ namespace Projects. Ground.Scripts
         [Inject]
         public void Construct()
         {
-            
         }
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.GetComponent<FruitController>() is {} fruitController) fruitController.Fruit.OnEnterBasket();
+            if (other.GetComponent<FruitController>() is { } fruitController) fruitController.Fruit.OnEnterBasket();
         }
     }
 }
