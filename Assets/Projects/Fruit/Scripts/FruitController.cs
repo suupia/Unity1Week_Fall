@@ -17,15 +17,20 @@ namespace Projects.Fruit.Scripts
     public class FruitController : MonoBehaviour
     {
         public IFruit Fruit => _fruit;
+        public Vector2 Velocity => _rb.velocity;
+
 
         readonly float _bottomDestroyLine = -10f;
         readonly float _topDestroyLine = 7f;
 
         IFruit _fruit;
+        Rigidbody2D _rb;
 
         public void Init(IFruit fruit)
         {
             _fruit = fruit;
+
+            _rb = gameObject.GetComponent<Rigidbody2D>();
 
             // 低すぎる場所に行くとDestroyする
             this.UpdateAsObservable()

@@ -23,11 +23,12 @@ namespace Projects.Fruit.Scripts
             _factory = factory;
         }
 
-        public void Build(FruitType fruitType, Vector3 position)
+        public FruitController Build(FruitType fruitType, Vector3 position)
         {
-            var fruitController = _loader.LoadFruitController(fruitType);
-            var fruitObj = Object.Instantiate(fruitController, position, Quaternion.identity);
-            fruitObj.Init(_factory.CreateFruit(fruitType));
+            var fruitPrefab = _loader.LoadFruitController(fruitType);
+            var fruitController = Object.Instantiate(fruitPrefab, position, Quaternion.identity);
+            fruitController.Init(_factory.CreateFruit(fruitType));
+            return fruitController;
         }
     }
 }

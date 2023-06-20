@@ -61,7 +61,7 @@ namespace Projects.Fruit.Scripts
             var random = UnityEngine.Random.Range(0, 1.0f);
             var sign = random > 0 ? 1 : -1;
             var randomX = sign * random * _stageManager.StageWidth / 2;
-            var height = 4.0f;
+            var height = 4.5f;
             return new Vector3(randomX, height, 0);
         }
         

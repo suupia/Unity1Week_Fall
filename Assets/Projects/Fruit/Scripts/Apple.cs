@@ -19,6 +19,9 @@ namespace Projects.Fruit.Scripts
         readonly FruitControllerLoader _fruitControllerLoader;
         readonly IFruitScore _fruitScore;
         
+        readonly float _amplifyOffset = 0.1f;
+        readonly float _amplifyForce = 1f; 
+        
         readonly int _scoreAmount = 10;
         [Inject]
         public  Apple(IObjectResolver resolver)
@@ -40,7 +43,13 @@ namespace Projects.Fruit.Scripts
         {
             Debug.Log($"Appleが増加しました");
             var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
-            fruitBuilder.Build(FruitType.Apple,transform.position);
+            var offset = _amplifyOffset * ProjectUtility.RandomDownVector2();
+            var fruitController =  fruitBuilder.Build(FruitType.Apple,transform.position + (Vector3)offset);
+            var fruitRb = fruitController.GetComponent<Rigidbody2D>();
+            fruitRb.velocity = fruitController.Velocity;
+            fruitRb.AddForce(_amplifyForce * ProjectUtility.RandomVector2(), ForceMode2D.Impulse);
         }
+        
+
     }
 }
