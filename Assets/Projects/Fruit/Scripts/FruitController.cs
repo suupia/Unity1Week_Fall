@@ -46,7 +46,7 @@ namespace Projects.Fruit.Scripts
             this.OnDestroyAsObservable()
                 .Subscribe(_ =>
                 {
-                    Debug.Log($"Destroy Fruit");
+                    // Debug.Log($"Destroy Fruit");
                     fruitCountLimiter.DecreaseFruitCount();
                 });
         }

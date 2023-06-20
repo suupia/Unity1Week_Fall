@@ -21,11 +21,9 @@ namespace Projects.Fruit.Scripts
         public void IncreaseFruitCount()
         {
             _currentFruitCount++;
-            Debug.Log($"CurrentFruitCount: {_currentFruitCount}");
         }
         public void DecreaseFruitCount()
         {
-            Debug.Log($"DecreaseFruitCount");
             _currentFruitCount--;
         }
     }

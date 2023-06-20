@@ -47,7 +47,7 @@ namespace Projects.Fruit.Scripts
         {
             var randomType = RandomType();
             var randomPosition = RandomPosition();
-            _fruitControllerBuilder.Build(RandomType(), RandomPosition());
+            _fruitControllerBuilder.Build(RandomType(), RandomPosition(), 0);
         }
         FruitType RandomType()
         {
