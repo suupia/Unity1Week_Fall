@@ -55,7 +55,7 @@ namespace Projects.Fruit.Scripts
         void Spawn()
         {
             var randomPosition = RandomPosition();
-            Debug.Log($"randomPosition:{randomPosition}");
+            // Debug.Log($"randomPosition:{randomPosition}");
             var fruitObj = _fruitCreator.Create(FruitType.Apple);
             _resolver.Instantiate(fruitObj,randomPosition,Quaternion.identity);
         }

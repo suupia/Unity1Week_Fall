@@ -28,9 +28,9 @@ namespace Projects.Fruit.Scripts
         // ドメインスクリプトがMonoの要素に依存しているのはよくないかもと思ったので、Transformは引数で受け取るようにした
         public void Amplify(Transform transform)
         {
-            // Debug.Log($"Appleが増加しました");
-            // var fruitObj = _fruitCreator.Create(FruitType.Apple);
-            // _resolver.Instantiate(fruitObj,transform.position,Quaternion.identity);
+            Debug.Log($"Appleが増加しました");
+            var fruitObj = _fruitCreator.Create(FruitType.Apple);
+            _resolver.Instantiate(fruitObj,transform.position,Quaternion.identity);
         }
     }
 }

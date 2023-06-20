@@ -35,7 +35,7 @@ public class LaserController : MonoBehaviour
 
         // Raycast
         RaycastHit2D hit = Physics2D.Raycast(position, direction, range);
-    
+        
         // If the raycast hit something
         if (hit.collider != null)
         {
@@ -45,9 +45,4 @@ public class LaserController : MonoBehaviour
  
     }
 
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     // ToDo: とりあえず触れたら確定で2倍になる
-    //     if (other.GetComponent<FruitController>() is { } fruitController) fruitController.Fruit.Amplify(fruitController.transform);
-    // }
 }
