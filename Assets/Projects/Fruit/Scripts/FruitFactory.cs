@@ -16,11 +16,12 @@ namespace Projects.Fruit.Scripts
         }
         public IFruit  CreateFruit(FruitType fruitType)
         {
+            var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
             return fruitType switch
             {
-                FruitType.Apple => new Apple(_resolver),
-                FruitType.BadApple => new BadApple(_resolver),
-                _ => new Apple(_resolver),
+                FruitType.Apple => new Apple(_resolver,new DoubleAmplify(fruitType, fruitBuilder) ),
+                FruitType.BadApple => new BadApple(_resolver,new DoubleAmplify(fruitType, fruitBuilder) ),
+                _ => new Apple(_resolver,new DoubleAmplify(fruitType, fruitBuilder) ),
             };
         }
     }

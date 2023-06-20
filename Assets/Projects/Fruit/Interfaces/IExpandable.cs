@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Projects.Fruit.Interfaces
 {
-    public interface IAmplifiable
+    public interface IAmplify
     {
         public void Amplify(Transform transform);
     }

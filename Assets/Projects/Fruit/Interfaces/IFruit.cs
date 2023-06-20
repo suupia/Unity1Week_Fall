@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Projects.Fruit.Interfaces
 {
-    public interface IFruit: IAmplifiable
+    public interface IFruit: IAmplify
     {
         void OnEnterBasket(GameObject gameObject);
     }

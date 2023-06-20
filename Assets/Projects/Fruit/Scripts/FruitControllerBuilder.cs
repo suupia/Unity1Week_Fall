@@ -16,8 +16,9 @@ namespace Projects.Fruit.Scripts
     {
         readonly FruitControllerLoader _loader;
         readonly FruitFactory _factory;
+
         [Inject]
-        public  FruitControllerBuilder(FruitControllerLoader loader, FruitFactory factory)
+        public  FruitControllerBuilder(FruitControllerLoader loader, FruitFactory factory )
         {
             _loader = loader;
             _factory = factory;

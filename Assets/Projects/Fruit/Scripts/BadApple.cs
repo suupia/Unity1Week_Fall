@@ -17,17 +17,16 @@ namespace Projects.Fruit.Scripts
         readonly IObjectResolver _resolver;
         readonly FruitControllerLoader _fruitControllerLoader;
         readonly IFruitScore _fruitScore;
+        readonly IAmplify _amplify;
 
-        readonly float _amplifyOffset = 0.1f;
-        readonly float _amplifyForce = 1f; 
-        
         readonly int _scoreAmount = 10;
         [Inject]
-        public  BadApple(IObjectResolver resolver)
+        public  BadApple(IObjectResolver resolver, IAmplify amplify)
         {
             _resolver = resolver;
             _fruitControllerLoader = resolver.Resolve<FruitControllerLoader>();
             _fruitScore = resolver.Resolve<IFruitScore>();
+            _amplify = amplify;
 
         }
         public void OnEnterBasket(GameObject gameObject)
@@ -41,12 +40,7 @@ namespace Projects.Fruit.Scripts
         public void Amplify(Transform transform)
         {
             Debug.Log($"BadAppleが増加しました");
-            var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
-            var offset = _amplifyOffset * ProjectUtility.RandomDownVector2();
-            var fruitController =  fruitBuilder.Build(FruitType.BadApple,transform.position + (Vector3)offset);
-            var fruitRb = fruitController.GetComponent<Rigidbody2D>();
-            fruitRb.velocity = fruitController.Velocity;
-            fruitRb.AddForce(_amplifyForce * ProjectUtility.RandomVector2(), ForceMode2D.Impulse);
+            _amplify.Amplify(transform);
         }
     }
 }
