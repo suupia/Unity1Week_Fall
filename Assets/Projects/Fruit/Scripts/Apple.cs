@@ -6,6 +6,7 @@ using Projects.GameSystem.Interfaces;
 using Projects.Score.Interfaces;
 using Projects.Score.Script;
 using Projects.Utility;
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -27,10 +28,11 @@ namespace Projects.Fruit.Scripts
             _fruitScore = resolver.Resolve<IFruitScore>();
 
         }
-        public void OnEnterBasket()
+        public void OnEnterBasket(GameObject gameObject)
         {
             Debug.Log($"Appleを取得");
             _fruitScore.IncreaseScore(_scoreAmount);
+            UnityEngine.Object.Destroy(gameObject);
         }
         
         // ドメインスクリプトがMonoの要素に依存しているのはよくないかもと思ったので、Transformは引数で受け取るようにした

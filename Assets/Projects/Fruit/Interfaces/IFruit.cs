@@ -6,7 +6,7 @@ namespace Projects.Fruit.Interfaces
 {
     public interface IFruit: IAmplifiable
     {
-        void OnEnterBasket();
+        void OnEnterBasket(GameObject gameObject);
     }
 
 }

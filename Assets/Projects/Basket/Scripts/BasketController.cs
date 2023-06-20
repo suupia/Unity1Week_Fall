@@ -21,7 +21,7 @@ namespace Projects.Ground.Scripts
         {
             if (other.GetComponent<FruitController>() is { } fruitController)
             {
-                fruitController.Fruit.OnEnterBasket();
+               //  fruitController.Fruit.OnEnterBasket();
             }
         }
     }

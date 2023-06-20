@@ -66,7 +66,8 @@ namespace Projects.Player.Scripts
         {
             if (other.GetComponent<FruitController>() is { } fruitController)
             {
-                BounceOff(fruitController);
+                // BounceOff(fruitController);
+                fruitController.Fruit.OnEnterBasket(fruitController.gameObject);
             }
         }
 

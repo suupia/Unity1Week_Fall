@@ -27,10 +27,11 @@ namespace Projects.Fruit.Scripts
             _fruitScore = resolver.Resolve<IFruitScore>();
 
         }
-        public void OnEnterBasket()
+        public void OnEnterBasket(GameObject gameObject)
         {
             Debug.Log($"BadAppleを取得");
             _fruitScore.DecreaseScore(_scoreAmount);
+            UnityEngine.Object.Destroy(gameObject);
         }
         
         // ドメインスクリプトがMonoの要素に依存しているのはよくないかもと思ったので、Transformは引数で受け取るようにした
