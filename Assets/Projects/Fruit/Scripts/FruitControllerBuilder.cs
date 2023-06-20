@@ -16,19 +16,22 @@ namespace Projects.Fruit.Scripts
     {
         readonly FruitControllerLoader _loader;
         readonly FruitFactory _factory;
+        readonly FruitCountLimiter _fruitCountLimiter;
 
         [Inject]
-        public  FruitControllerBuilder(FruitControllerLoader loader, FruitFactory factory )
+        public  FruitControllerBuilder(FruitControllerLoader loader, FruitFactory factory, FruitCountLimiter fruitCountLimiter )
         {
             _loader = loader;
             _factory = factory;
+            _fruitCountLimiter = fruitCountLimiter;
         }
 
         public FruitController Build(FruitType fruitType, Vector3 position)
         {
             var fruitPrefab = _loader.LoadFruitController(fruitType);
             var fruitController = Object.Instantiate(fruitPrefab, position, Quaternion.identity);
-            fruitController.Init(_factory.CreateFruit(fruitType));
+            fruitController.Init(_factory.CreateFruit(fruitType), _fruitCountLimiter);
+            _fruitCountLimiter.IncreaseFruitCount();
             return fruitController;
         }
     }

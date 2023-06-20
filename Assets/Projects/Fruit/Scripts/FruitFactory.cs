@@ -17,11 +17,13 @@ namespace Projects.Fruit.Scripts
         public IFruit  CreateFruit(FruitType fruitType)
         {
             var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
+            var fruitCountLimiter = _resolver.Resolve<FruitCountLimiter>();
+            var amplify = new DoubleAmplify(fruitType, fruitBuilder, fruitCountLimiter); // とりあえずすべて共通なのでswitchの外に書ける
             return fruitType switch
             {
-                FruitType.Apple => new Apple(_resolver,new DoubleAmplify(fruitType, fruitBuilder) ),
-                FruitType.BadApple => new BadApple(_resolver,new DoubleAmplify(fruitType, fruitBuilder) ),
-                _ => new Apple(_resolver,new DoubleAmplify(fruitType, fruitBuilder) ),
+                FruitType.Apple => new Apple(_resolver,amplify),
+                FruitType.BadApple => new BadApple(_resolver,amplify ),
+                _ => new Apple(_resolver,amplify ),
             };
         }
     }

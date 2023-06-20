@@ -26,7 +26,7 @@ namespace Projects.Fruit.Scripts
         IFruit _fruit;
         Rigidbody2D _rb;
 
-        public void Init(IFruit fruit)
+        public void Init(IFruit fruit , FruitCountLimiter fruitCountLimiter)
         {
             _fruit = fruit;
 
@@ -41,6 +41,14 @@ namespace Projects.Fruit.Scripts
             this.UpdateAsObservable()
                 .Where(_ => transform.position.y >= _topDestroyLine)
                 .Subscribe(_ => Destroy(gameObject));
+            
+            // Destroyの前にFruitCountLimiter.DecreaseFruitCount()を呼ぶ
+            this.OnDestroyAsObservable()
+                .Subscribe(_ =>
+                {
+                    Debug.Log($"Destroy Fruit");
+                    fruitCountLimiter.DecreaseFruitCount();
+                });
         }
     }
 }

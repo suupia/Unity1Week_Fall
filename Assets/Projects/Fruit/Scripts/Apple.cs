@@ -15,16 +15,13 @@ namespace Projects.Fruit.Scripts
 {
     public class Apple : IFruit
     {
-        readonly IObjectResolver _resolver;
-        readonly FruitControllerLoader _fruitControllerLoader;
         readonly IFruitScore _fruitScore;
         readonly IAmplify _amplify;
         readonly int _scoreAmount = 10;
+        
         [Inject]
         public  Apple(IObjectResolver resolver, IAmplify amplify)
         {
-            _resolver = resolver;
-            _fruitControllerLoader = resolver.Resolve<FruitControllerLoader>();
             _fruitScore = resolver.Resolve<IFruitScore>();
             _amplify = amplify;
 
