@@ -25,7 +25,7 @@ namespace Projects.Fruit.Scripts
             {
                 FruitType.Apple => new Fruit(_resolver,amplify,scoreTextSpawner,new FruitRecord(fruitType, 10)),
                 FruitType.BadApple => new Fruit(_resolver,amplify ,scoreTextSpawner, new FruitRecord(fruitType, 10)),
-                _ => new Apple(_resolver,amplify ,scoreTextSpawner),
+                _ => new Fruit(_resolver,amplify,scoreTextSpawner,new FruitRecord(fruitType, 10)), // Appleを返す
             };
         }
     }
