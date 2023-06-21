@@ -12,7 +12,7 @@ using Projects.Fruit.Scripts;
 
 namespace Projects.Player.Scripts
 {
-    public class PaddleController : MonoBehaviour
+    public class BasketController : MonoBehaviour
     {
         float speed = 20f;
         float forceAmount = 30f;
@@ -45,14 +45,13 @@ namespace Projects.Player.Scripts
         }
         bool CanMove(float hInput)
         {
-            if (hInput > 0 && transform.position.x >= _stageManager.StageWidth / 2.0f -
-                paddleObj.transform.localScale.x / 2.0f - _stageManager.HorizontalMargin)
+            var movableWidth = _stageManager.StageWidth / 2.0f -
+                               paddleObj.transform.localScale.x / 2.0f - _stageManager.HorizontalMargin;
+            if (hInput > 0 && transform.position.x >=movableWidth)
             {
                 return false;
             }
-            else if (hInput < 0 && transform.position.x <= -(_stageManager.StageWidth / 2.0f -
-                                                             paddleObj.transform.localScale.x / 2.0f -
-                                                             _stageManager.HorizontalMargin))
+            else if (hInput < 0 && transform.position.x <= -(movableWidth))
             {
                 return false;
             }
@@ -69,13 +68,6 @@ namespace Projects.Player.Scripts
                 // BounceOff(fruitController);
                 fruitController.Fruit.OnEnterBasket(fruitController.gameObject);
             }
-        }
-
-        void BounceOff(FruitController fruitController)
-        {
-            Debug.Log("Fruitを飛ばします");
-            var rb = fruitController.GetComponent<Rigidbody2D>();
-            rb.AddForce(forceAmount * Vector2.up, ForceMode2D.Impulse);
         }
     }
 }
