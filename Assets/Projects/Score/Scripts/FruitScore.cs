@@ -11,8 +11,6 @@ namespace Projects.Score.Script
 {
     public class FruitScore : IFruitScore
     {
-        // このクラスが肥大化していくと思うが、とりあえずはこのままで
-        // 数字を厳密に扱うために直観には沿わないつくりになる可能性が高い
         public double Amount => _increasedScore - _decreasedScore;
 
         double _increasedScore;
