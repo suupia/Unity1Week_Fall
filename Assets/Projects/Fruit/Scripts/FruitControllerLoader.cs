@@ -17,12 +17,22 @@ namespace Projects.Fruit.Scripts
     public enum FruitType
     {
         Apple,
-        Banana,
+        Bananas,
+        Cherries,
+        Kiwi,
+        Melon,
         Orange,
-        Peach,
+        Pineapple,
         Strawberry,
-        Watermelon,
         BadApple,
+        BadBananas,
+        BadCherries,
+        BadKiwi,
+        BadMelon,
+        BadOrange,
+        BadPineapple,
+        BadStrawberry,
+        
     }
     public class FruitControllerLoader
     {

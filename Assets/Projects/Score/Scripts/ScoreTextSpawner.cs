@@ -1,4 +1,5 @@
-﻿using  Projects. Score.Interfaces;
+﻿using Projects.Fruit.Scripts;
+using  Projects. Score.Interfaces;
 using Projects.Utility;
 using TMPro;
 using Unity.Mathematics;

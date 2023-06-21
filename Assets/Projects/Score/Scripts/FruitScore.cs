@@ -29,13 +29,13 @@ namespace Projects.Score.Script
             _judgeLevel = new JudgeLevelUp(levelManager);
         }
 
-        public void IncreaseScore(int value)
+        public void IncreaseScore(double value)
         {
             _increasedScore += value;
             _judgeLevel. UpdatePeakScore(Amount);
         }
 
-        public void DecreaseScore(int value)
+        public void DecreaseScore(double value)
         {
             _decreasedScore += value;
             _judgeLevel. UpdatePeakScore(Amount);

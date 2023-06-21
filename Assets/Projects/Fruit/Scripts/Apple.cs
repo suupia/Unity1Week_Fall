@@ -18,9 +18,9 @@ namespace Projects.Fruit.Scripts
     {
         readonly IFruitScore _fruitScore;
         readonly IAmplify _amplify;
-        readonly int _scoreAmount = 10;
         readonly ScoreTextSpawner _scoreTextSpawner;
         
+        readonly int _scoreAmount = 10;
         [Inject]
         public  Apple(IObjectResolver resolver, IAmplify amplify, ScoreTextSpawner scoreTextSpawner)
         {

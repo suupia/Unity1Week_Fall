@@ -4,7 +4,7 @@
     {
         double Amount { get; }
         
-        void IncreaseScore(int value);
-        void DecreaseScore(int value);
+        void IncreaseScore(double value);
+        void DecreaseScore(double value);
     }
 }

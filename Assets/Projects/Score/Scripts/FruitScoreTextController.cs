@@ -1,14 +1,10 @@
 ﻿using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Projects.Fruit.Scripts;
 
 namespace Projects.Score.Script
 {
-    public enum FruitScoreType
-    {
-        Positive,
-        Negative
-    }
 
     [RequireComponent(typeof(TextMeshPro))]
     public class FruitScoreTextController : MonoBehaviour

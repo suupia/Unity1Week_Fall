@@ -23,8 +23,8 @@ namespace Projects.Fruit.Scripts
             var scoreTextSpawner = _resolver.Resolve<ScoreTextSpawner>();
             return fruitType switch
             {
-                FruitType.Apple => new Apple(_resolver,amplify,scoreTextSpawner),
-                FruitType.BadApple => new BadApple(_resolver,amplify ,scoreTextSpawner),
+                FruitType.Apple => new Fruit(_resolver,amplify,scoreTextSpawner,new FruitRecord(fruitType, 10)),
+                FruitType.BadApple => new Fruit(_resolver,amplify ,scoreTextSpawner, new FruitRecord(fruitType, 10)),
                 _ => new Apple(_resolver,amplify ,scoreTextSpawner),
             };
         }
