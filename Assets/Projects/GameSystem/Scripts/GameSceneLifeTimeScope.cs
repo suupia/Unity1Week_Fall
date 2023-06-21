@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Level.Interfaces;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
 using Projects.GameSystem.Interfaces;
 using Projects.Ground.Scripts;
+using Projects.Level.Scripts;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -45,11 +47,14 @@ namespace Projects.GameSystem.Scripts
             builder.Register<LaserSpawner>(Lifetime.Singleton);
             
             // Score
-            builder.Register<FruitFruitScore>(Lifetime.Singleton).As<IFruitScore>();
+            builder.Register<FruitScore>(Lifetime.Singleton).As<IFruitScore>();
             builder.Register<ScoreTextSpawner>(Lifetime.Singleton);
             
             // Timer
             builder.Register<StageTimer>(Lifetime.Singleton);
+            
+            // Level
+            builder.Register<LevelManager>(Lifetime.Singleton).As<ILevelManager>(); // ToDo: Tmp
         }
     }
 }

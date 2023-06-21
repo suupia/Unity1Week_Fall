@@ -26,6 +26,6 @@ namespace Projects.UI.Scripts
                 .Subscribe(_ => scoreText.text = ScoreFormat(fruitScore.Value));
         }
 
-        string ScoreFormat(int value) => $"Score : {value}";
+        string ScoreFormat(long value) => $"Score : {value}";
     }
 }
