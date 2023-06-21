@@ -35,7 +35,7 @@ namespace Projects.Fruit.Scripts
             _fruitCountLimiter = fruitCountLimiter;
             _fruitType = fruitType;
             _generationCount = generationCount;
-            Debug.Log($"generationCount = {_generationCount}");
+            // Debug.Log($"generationCount = {_generationCount}");
         }
 
         public void Amplify(Transform transform)

@@ -1,4 +1,5 @@
 ﻿using Projects.Fruit.Interfaces;
+using Projects.Score.Script;
 using VContainer;
 using VContainer.Unity;
 
@@ -19,11 +20,12 @@ namespace Projects.Fruit.Scripts
             var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
             var fruitCountLimiter = _resolver.Resolve<FruitCountLimiter>();
             var amplify = new DoubleAmplify(fruitBuilder, fruitCountLimiter,fruitType, generateCount); // とりあえずすべて共通なのでswitchの外に書ける
+            var scoreTextSpawner = _resolver.Resolve<ScoreTextSpawner>();
             return fruitType switch
             {
-                FruitType.Apple => new Apple(_resolver,amplify),
-                FruitType.BadApple => new BadApple(_resolver,amplify ),
-                _ => new Apple(_resolver,amplify ),
+                FruitType.Apple => new Apple(_resolver,amplify,scoreTextSpawner),
+                FruitType.BadApple => new BadApple(_resolver,amplify ,scoreTextSpawner),
+                _ => new Apple(_resolver,amplify ,scoreTextSpawner),
             };
         }
     }

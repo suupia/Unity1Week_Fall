@@ -6,6 +6,7 @@ using Projects.GameSystem.Interfaces;
 using Projects.Score.Interfaces;
 using Projects.Score.Script;
 using Projects.Utility;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
@@ -18,12 +19,14 @@ namespace Projects.Fruit.Scripts
         readonly IFruitScore _fruitScore;
         readonly IAmplify _amplify;
         readonly int _scoreAmount = 10;
+        readonly ScoreTextSpawner _scoreTextSpawner;
         
         [Inject]
-        public  Apple(IObjectResolver resolver, IAmplify amplify)
+        public  Apple(IObjectResolver resolver, IAmplify amplify, ScoreTextSpawner scoreTextSpawner)
         {
             _fruitScore = resolver.Resolve<IFruitScore>();
             _amplify = amplify;
+            _scoreTextSpawner = scoreTextSpawner;
 
         }
         public void OnEnterBasket(GameObject gameObject)
@@ -31,6 +34,8 @@ namespace Projects.Fruit.Scripts
             Debug.Log($"Appleを取得");
             _fruitScore.IncreaseScore(_scoreAmount);
             UnityEngine.Object.Destroy(gameObject);
+            var text = $"+{_scoreAmount}";
+            _scoreTextSpawner.Spawn(FruitScoreType.Positive, text, gameObject.transform.position);
         }
         
         // ドメインスクリプトがMonoの要素に依存しているのはよくないかもと思ったので、Transformは引数で受け取るようにした

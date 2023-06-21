@@ -46,6 +46,7 @@ namespace Projects.GameSystem.Scripts
             
             // Score
             builder.Register<FruitFruitScore>(Lifetime.Singleton).As<IFruitScore>();
+            builder.Register<ScoreTextSpawner>(Lifetime.Singleton);
             
             // Timer
             builder.Register<StageTimer>(Lifetime.Singleton);

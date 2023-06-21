@@ -16,20 +16,23 @@ namespace Projects.Fruit.Scripts
     {
         readonly IFruitScore _fruitScore;
         readonly IAmplify _amplify;
+        readonly ScoreTextSpawner _scoreTextSpawner;
 
         readonly int _scoreAmount = 10;
         [Inject]
-        public  BadApple(IObjectResolver resolver, IAmplify amplify )
+        public  BadApple(IObjectResolver resolver, IAmplify amplify , ScoreTextSpawner scoreTextSpawner)
         {
             _fruitScore = resolver.Resolve<IFruitScore>();
             _amplify = amplify;
-
+            _scoreTextSpawner = scoreTextSpawner;
         }
         public void OnEnterBasket(GameObject gameObject)
         {
             Debug.Log($"BadAppleを取得");
             _fruitScore.DecreaseScore(_scoreAmount);
             UnityEngine.Object.Destroy(gameObject);
+            var text = $"-{_scoreAmount}";
+            _scoreTextSpawner.Spawn(FruitScoreType.Negative, text, gameObject.transform.position);
         }
         
         // ドメインスクリプトがMonoの要素に依存しているのはよくないかもと思ったので、Transformは引数で受け取るようにした

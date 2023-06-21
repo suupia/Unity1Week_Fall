@@ -317,8 +317,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Time : 60 s'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ce5d96eeaa554cb4c8ebdefbd645ca74, type: 2}
-  m_sharedMaterial: {fileID: 233318893619804426, guid: ce5d96eeaa554cb4c8ebdefbd645ca74, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0276ea01c95238479b807df8d098093, type: 2}
+  m_sharedMaterial: {fileID: 8767340146176296714, guid: e0276ea01c95238479b807df8d098093, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1250,7 +1250,7 @@ GameObject:
   - component: {fileID: 1940772979}
   - component: {fileID: 1940772978}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: TotalScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1298,8 +1298,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score : 888'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ce5d96eeaa554cb4c8ebdefbd645ca74, type: 2}
-  m_sharedMaterial: {fileID: 233318893619804426, guid: ce5d96eeaa554cb4c8ebdefbd645ca74, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0276ea01c95238479b807df8d098093, type: 2}
+  m_sharedMaterial: {fileID: 8767340146176296714, guid: e0276ea01c95238479b807df8d098093, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
