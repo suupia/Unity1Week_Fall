@@ -16,15 +16,17 @@ namespace Projects.Score.Script
         [SerializeField] Color positiveColor;
         [SerializeField] Color negativeColor;
 
-        readonly float _offsetHeight = 0.5f;
+        readonly float _offsetMinHeight = 0.3f;
+        readonly float _offsetMaxHeight = 0.5f;
         readonly float _lifeTime = 1f;
         readonly float _moveDistance = 1f;
 
         public void Init(FruitScoreType type, string text)
         {
             // Debug.Log($"Init FruitScoreTextController");
-            var pos = transform.position;
-            transform.position = new Vector2(pos.x, pos.y + _offsetHeight);
+            var initPos = transform.position;
+            var randOffset = Random.Range(_offsetMinHeight, _offsetMaxHeight);
+            transform.position = new Vector2(initPos.x, initPos.y + randOffset);
 
             var color = type == FruitScoreType.Positive ? positiveColor : negativeColor;
             var textMeshPro = GetComponent<TextMeshPro>();
