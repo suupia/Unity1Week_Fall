@@ -77,7 +77,7 @@ namespace Projects.Fruit.Scripts
         float CalculateSpawnIntervalSeconds()
         {
             var level = _levelManager.CurrentLevel;
-            var rate =level != 0 ?   1 / Mathf.Pow(level, 0.3f) : 1;
+            var rate =level != 0 ?   1 / Mathf.Pow(level, 0.25f) : 1;  // Powの値を減らすとスポーンの頻度が上がる
             var interval = _initSpawnIntervalSeconds * rate;
             return interval;
         }

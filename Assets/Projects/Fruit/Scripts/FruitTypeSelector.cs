@@ -24,15 +24,15 @@ namespace Projects.Fruit.Scripts
             {
                 0 => RandomFruitType((FruitType.Apple, 100)),
 
-                1 => RandomFruitType((FruitType.Apple, 30), (FruitType.Cherries, 70)),
+                1 => RandomFruitType((FruitType.Apple, 15), (FruitType.Cherries, 85)),
 
-                2 => RandomFruitType((FruitType.Apple, 10), (FruitType.Cherries, 30), (FruitType.Strawberry, 60)),
+                2 => RandomFruitType((FruitType.Apple, 10), (FruitType.Cherries, 20), (FruitType.Strawberry, 70)),
 
-                3 => RandomFruitType((FruitType.Apple, 10), (FruitType.Cherries, 20), (FruitType.Strawberry, 25), (FruitType.Melon, 55)),
+                3 => RandomFruitType((FruitType.Apple, 5), (FruitType.Cherries, 5), (FruitType.Strawberry, 20), (FruitType.Melon, 70)),
 
-                4 => RandomFruitType((FruitType.Apple, 5), (FruitType.Cherries, 10), (FruitType.Strawberry, 10), (FruitType.Melon, 20), (FruitType.Pineapple, 55)),
+                4 => RandomFruitType((FruitType.Apple, 0), (FruitType.Cherries, 10), (FruitType.Strawberry, 10), (FruitType.Melon, 25), (FruitType.Pineapple, 55)),
 
-                5 => RandomFruitType((FruitType.Apple, 5), (FruitType.Cherries, 5), (FruitType.Strawberry, 5), (FruitType.Melon, 15), (FruitType.Pineapple, 20), (FruitType.Orange, 50)),
+                5 => RandomFruitType((FruitType.Apple, 0), (FruitType.Cherries, 5), (FruitType.Strawberry, 5), (FruitType.Melon, 15), (FruitType.Pineapple, 20), (FruitType.Orange, 55)),
 
                 6 => RandomFruitType((FruitType.Apple, 0), (FruitType.Cherries, 2), (FruitType.Strawberry, 3), (FruitType.Melon, 5), (FruitType.Pineapple, 20), (FruitType.Orange, 20), (FruitType.Bananas, 50)),
 

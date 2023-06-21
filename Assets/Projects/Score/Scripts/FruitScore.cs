@@ -47,7 +47,7 @@ namespace Projects.Score.Script
         double _peakScore; // 到達したスコアの最大値 単調増加になることに注意
         readonly ILevelManager _levelManager;
 
-        readonly Func<long, double> _levelUpJudge = (level) => Mathf.Pow(100, level); // レベルアップの成長曲線を決める
+        readonly Func<long, double> _levelUpJudge = (level) => 10 + 10 * Mathf.Pow(5, level); // レベルアップの成長曲線を決める
 
         public JudgeLevelUp(ILevelManager levelManager)
         {
