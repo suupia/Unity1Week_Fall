@@ -19,28 +19,28 @@ namespace Projects.Fruit.Scripts
     /// </summary>
     public class FruitSpawner : IDisposable
     {
-        readonly IObjectResolver _resolver;
         readonly StageManager _stageManager;
         readonly FruitControllerBuilder _fruitControllerBuilder;
         readonly ILevelManager _levelManager;
+        readonly FruitTypeSelector _fruitTypeSelector;
 
         readonly float _initSpawnIntervalSeconds = 1.0f;
 
-        IDisposable _spawnSubscription;
+        IDisposable? _spawnSubscription;
 
         [Inject]
-        public FruitSpawner(IObjectResolver resolver, StageManager stageManager,
-            FruitControllerBuilder fruitControllerBuilder, ILevelManager levelManager)
+        public FruitSpawner(StageManager stageManager,
+            FruitControllerBuilder fruitControllerBuilder, ILevelManager levelManager, FruitTypeSelector fruitTypeSelector)
         {
-            _resolver = resolver;
             _stageManager = stageManager;
             _fruitControllerBuilder = fruitControllerBuilder;
             _levelManager = levelManager;
+            _fruitTypeSelector = fruitTypeSelector;
         }
 
         public void Dispose()
         {
-            _spawnSubscription.Dispose();
+            _spawnSubscription?.Dispose();
         }
 
         public void StartSpawn()
@@ -59,18 +59,12 @@ namespace Projects.Fruit.Scripts
 
         void Spawn()
         {
-            var randomType = RandomType();
+            var randomType = _fruitTypeSelector.SelectFruitType(_levelManager.CurrentLevel);
+            var randomSign = _fruitTypeSelector.SelectFruitScoreSign(_levelManager.CurrentLevel);
             var randomPosition = RandomPosition();
-            _fruitControllerBuilder.Build(FruitType.Apple, RandomType(), RandomPosition(), 0);
+            _fruitControllerBuilder.Build(randomType, randomSign, randomPosition, 0);
         }
-
-        FruitScoreSign RandomType()
-        {
-            var random = UnityEngine.Random.Range(0, 1.0f);
-            var type = random > 0.3f ? FruitScoreSign.Positive :FruitScoreSign.Negative;
-            return type;
-        }
-
+        
         Vector3 RandomPosition()
         {
             var random = UnityEngine.Random.Range(0, 1.0f);

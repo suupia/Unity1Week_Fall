@@ -40,6 +40,7 @@ namespace Projects.GameSystem.Scripts
             builder.Register<FruitControllerBuilder>(Lifetime.Singleton);
             builder.Register<FruitSpawner>(Lifetime.Singleton);
             builder.Register<FruitCountLimiter>(Lifetime.Singleton);
+            builder.Register<FruitTypeSelector>(Lifetime.Singleton);
             
 
             // Laser
