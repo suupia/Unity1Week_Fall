@@ -1,4 +1,5 @@
-﻿using Projects.Fruit.Interfaces;
+﻿using System;
+using Projects.Fruit.Interfaces;
 using Projects.Score.Script;
 using VContainer;
 using VContainer.Unity;
@@ -21,12 +22,32 @@ namespace Projects.Fruit.Scripts
             var fruitCountLimiter = _resolver.Resolve<FruitCountLimiter>();
             var amplify = new DoubleAmplify(fruitBuilder, fruitCountLimiter,fruitType, generateCount); // とりあえずすべて共通なのでswitchの外に書ける
             var scoreTextSpawner = _resolver.Resolve<ScoreTextSpawner>();
-            return fruitType switch
+            return new Fruit(_resolver,amplify,scoreTextSpawner,DetermineFruitRecord(fruitType));
+        }
+
+        FruitRecord DetermineFruitRecord(FruitType fruitType)
+        {
+            double scoreAmount = fruitType switch
             {
-                FruitType.Apple => new Fruit(_resolver,amplify,scoreTextSpawner,new FruitRecord(fruitType, 10)),
-                FruitType.BadApple => new Fruit(_resolver,amplify ,scoreTextSpawner, new FruitRecord(fruitType, 10)),
-                _ => new Fruit(_resolver,amplify,scoreTextSpawner,new FruitRecord(fruitType, 10)), // Appleを返す
+                FruitType.Apple => 10,
+                FruitType.Bananas => 20,
+                FruitType.Cherries => 30,
+                FruitType.Kiwi => 40,
+                FruitType.Melon => 50,
+                FruitType.Orange => 60,
+                FruitType.Pineapple => 70,
+                FruitType.Strawberry => 80,
+                FruitType.BadApple => 10,
+                FruitType.BadBananas => 20,
+                FruitType.BadCherries => 30,
+                FruitType.BadKiwi => 40,
+                FruitType.BadMelon => 50,
+                FruitType.BadOrange => 60,
+                FruitType.BadPineapple => 70,
+                FruitType.BadStrawberry => 80,
+                _ => throw new ArgumentOutOfRangeException(nameof(fruitType), fruitType, null)
             };
+            return new FruitRecord(fruitType, scoreAmount);
         }
     }
 }
