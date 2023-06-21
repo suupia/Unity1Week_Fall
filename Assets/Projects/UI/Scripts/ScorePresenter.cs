@@ -23,9 +23,20 @@ namespace Projects.UI.Scripts
             scoreText.text = fruitScore.Amount.ToString();
             this.UpdateAsObservable()
                 .ObserveEveryValueChanged(_ => fruitScore.Amount)
-                .Subscribe(_ => scoreText.text = ScoreFormat(fruitScore.Amount));
+                .Subscribe(_ =>
+                {
+                    if (fruitScore.Amount >= 0)
+                    {
+                        scoreText.color = Color.black;
+                    }
+                    else
+                    {
+                        scoreText.color = new Color(132 / 255.0f, 17/ 255.0f, 17/ 255.0f);
+                    }
+
+                    scoreText.text = $"Score : {fruitScore.Amount}";
+                });
         }
 
-        string ScoreFormat(double value) => $"Score : {value}";
     }
 }
