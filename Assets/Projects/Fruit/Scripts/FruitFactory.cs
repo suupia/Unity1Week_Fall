@@ -30,16 +30,16 @@ namespace Projects.Fruit.Scripts
             double scoreAmount = fruitType switch
             {
                 FruitType.Apple => 10,
-                FruitType.Bananas => 20,
                 FruitType.Cherries => 30,
-                FruitType.Kiwi => 40,
-                FruitType.Melon => 50,
-                FruitType.Orange => 60,
-                FruitType.Pineapple => 70,
-                FruitType.Strawberry => 80,
+                FruitType.Strawberry => 100,
+                FruitType.Melon => 300,
+                FruitType.Pineapple => 800,
+                FruitType.Orange => 2400,
+                FruitType.Bananas => 8000,
+                FruitType.Kiwi => 10000,
                 _ => throw new ArgumentOutOfRangeException(nameof(fruitType), fruitType, null)
             };
-            return new FruitRecord(fruitType,fruitScoreSign, scoreAmount);
+            return new FruitRecord(fruitType, fruitScoreSign, scoreAmount);
         }
     }
 }

@@ -23,26 +23,20 @@ namespace Projects.Fruit.Scripts
             return currentLevel switch
             {
                 0 => RandomFruitType((FruitType.Apple, 100)),
-                
-                1 => RandomFruitType((FruitType.Apple, 70), (FruitType.Bananas, 30)),
-                
-                2 => RandomFruitType((FruitType.Apple, 50), (FruitType.Bananas, 40), (FruitType.Cherries, 10)),
-                
-                3 => RandomFruitType((FruitType.Apple, 30), (FruitType.Bananas, 30), (FruitType.Cherries, 20),
-                    (FruitType.Kiwi, 20)),
-                
-                4 => RandomFruitType((FruitType.Apple, 20), (FruitType.Bananas, 20), (FruitType.Cherries, 20),
-                    (FruitType.Kiwi, 20), (FruitType.Melon, 20)),
-                
-                5 => RandomFruitType((FruitType.Apple, 15), (FruitType.Bananas, 15), (FruitType.Cherries, 15),
-                    (FruitType.Kiwi, 15), (FruitType.Melon, 20), (FruitType.Orange, 20)),
-                
-                6 => RandomFruitType((FruitType.Apple, 10), (FruitType.Bananas, 10), (FruitType.Cherries, 10),
-                    (FruitType.Kiwi, 10), (FruitType.Melon, 10), (FruitType.Orange, 20), (FruitType.Pineapple, 30)),
-                
-                _ => RandomFruitType((FruitType.Apple, 5), (FruitType.Bananas, 5), (FruitType.Cherries, 10),
-                    (FruitType.Kiwi, 10), (FruitType.Melon, 10), (FruitType.Orange, 20), (FruitType.Pineapple, 20),
-                    (FruitType.Strawberry, 20)),
+
+                1 => RandomFruitType((FruitType.Apple, 70), (FruitType.Cherries, 30)),
+
+                2 => RandomFruitType((FruitType.Apple, 50), (FruitType.Cherries, 40), (FruitType.Strawberry, 10)),
+
+                3 => RandomFruitType((FruitType.Apple, 30), (FruitType.Cherries, 30), (FruitType.Strawberry, 20), (FruitType.Melon, 20)),
+
+                4 => RandomFruitType((FruitType.Apple, 20), (FruitType.Cherries, 20), (FruitType.Strawberry, 20), (FruitType.Melon, 20), (FruitType.Pineapple, 20)),
+
+                5 => RandomFruitType((FruitType.Apple, 15), (FruitType.Cherries, 15), (FruitType.Strawberry, 15), (FruitType.Melon, 20), (FruitType.Pineapple, 20), (FruitType.Orange, 10)),
+
+                6 => RandomFruitType((FruitType.Apple, 10), (FruitType.Cherries, 10), (FruitType.Strawberry, 10), (FruitType.Melon, 10), (FruitType.Pineapple, 20), (FruitType.Orange, 20), (FruitType.Bananas, 20)),
+
+                _ => RandomFruitType((FruitType.Apple, 5), (FruitType.Cherries, 10), (FruitType.Strawberry, 10), (FruitType.Melon, 10), (FruitType.Pineapple, 20), (FruitType.Orange, 20), (FruitType.Bananas, 15), (FruitType.Kiwi, 10)),
             };
         }
 
