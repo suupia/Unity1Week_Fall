@@ -21,24 +21,24 @@ namespace Projects.Fruit.Scripts
             _levelManager = levelManager;
         } 
         
-        public FruitType Select()
-        {
-            var random = UnityEngine.Random.Range(0, 1.0f);
-            return _levelManager.CurrentLevel switch
-            {
-                0 => LevelZero(random),
-                1 => LevelOne(random),
-            };
-        }
-
-        FruitType LevelZero(float random)
-        {
-            return random > 0.3f ? FruitType.Apple : FruitType.BadApple;
-        }
-        
-        FruitType LevelOne(float random)
-        {
-            return random > 0.5f ? FruitType.Apple : FruitType.BadApple;
-        }
+        // public FruitType Select()
+        // {
+        //     var random = UnityEngine.Random.Range(0, 1.0f);
+        //     return _levelManager.CurrentLevel switch
+        //     {
+        //         0 => LevelZero(random),
+        //         1 => LevelOne(random),
+        //     };
+        // }
+        //
+        // FruitType LevelZero(float random)
+        // {
+        //     return random > 0.3f ? FruitType.Apple : FruitType.BadApple;
+        // }
+        //
+        // FruitType LevelOne(float random)
+        // {
+        //     return random > 0.5f ? FruitType.Apple : FruitType.BadApple;
+        // }
     }
 }

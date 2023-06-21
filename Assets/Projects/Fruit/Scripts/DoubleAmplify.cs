@@ -23,17 +23,19 @@ namespace Projects.Fruit.Scripts
         readonly FruitControllerBuilder _fruitControllerBuilder;
         readonly FruitCountLimiter _fruitCountLimiter;
         readonly FruitType _fruitType;
+        readonly FruitScoreSign _fruitScoreSign;
 
         int _currentAmplifyCount;
         readonly int _maxGenerationCount = 3;
         int _generationCount; // 世代数 ものすごく増えてしまうことを避ける
 
         public DoubleAmplify(FruitControllerBuilder fruitControllerBuilder,
-            FruitCountLimiter fruitCountLimiter,FruitType fruitType, int generationCount)
+            FruitCountLimiter fruitCountLimiter,FruitType fruitType,FruitScoreSign fruitScoreSign, int generationCount)
         {
             _fruitControllerBuilder = fruitControllerBuilder;
             _fruitCountLimiter = fruitCountLimiter;
             _fruitType = fruitType;
+            _fruitScoreSign = fruitScoreSign;
             _generationCount = generationCount;
             // Debug.Log($"generationCount = {_generationCount}");
         }
@@ -42,7 +44,7 @@ namespace Projects.Fruit.Scripts
         {
             if(!CanAmplify())return;
             var offset = _amplifyOffset * ProjectUtility.RandomDownVector2();
-            var fruitController = _fruitControllerBuilder.Build(_fruitType, transform.position + (Vector3)offset, _generationCount + 1);
+            var fruitController = _fruitControllerBuilder.Build(_fruitType, _fruitScoreSign,transform.position + (Vector3)offset, _generationCount + 1);
             var fruitRb = fruitController.GetComponent<Rigidbody2D>();
             fruitRb.velocity = fruitController.Velocity;
             fruitRb.AddForce(_amplifyForce * ProjectUtility.RandomVector2(), ForceMode2D.Impulse);

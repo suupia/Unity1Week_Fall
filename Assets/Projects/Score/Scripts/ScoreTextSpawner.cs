@@ -18,11 +18,11 @@ namespace Projects.Score.Script
             _prefabLoader = new PrefabLoaderFromResources<FruitScoreTextController>("Prefabs/Score");
         }
         
-        public void Spawn(FruitScoreType scoreType, string text,Vector3 position)
+        public void Spawn(FruitScoreSign scoreSign, string text,Vector3 position)
         {
             var textPrefab = _prefabLoader.Load("FruitScoreText");
             var textController = Object.Instantiate(textPrefab, position, quaternion.identity);
-            textController.Init(scoreType, text);
+            textController.Init(scoreSign, text);
         }
     }
 }

@@ -17,14 +17,14 @@ namespace Projects.Score.Script
         readonly float _lifeTime = 1f;
         readonly float _moveDistance = 1f;
 
-        public void Init(FruitScoreType type, string text)
+        public void Init(FruitScoreSign sign, string text)
         {
             // Debug.Log($"Init FruitScoreTextController");
             var initPos = transform.position;
             var randOffset = Random.Range(_offsetMinHeight, _offsetMaxHeight);
             transform.position = new Vector2(initPos.x, initPos.y + randOffset);
 
-            var color = type == FruitScoreType.Positive ? positiveColor : negativeColor;
+            var color = sign == FruitScoreSign.Positive ? positiveColor : negativeColor;
             var textMeshPro = GetComponent<TextMeshPro>();
             var moveEndPos = transform.position.y + _moveDistance;
 

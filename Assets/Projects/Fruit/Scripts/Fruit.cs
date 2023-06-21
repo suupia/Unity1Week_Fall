@@ -15,7 +15,7 @@ using VContainer.Unity;
 # nullable enable
 namespace Projects.Fruit.Scripts
 {
-    public enum FruitScoreType
+    public enum FruitScoreSign
     {
         Positive,
         Negative
@@ -24,12 +24,14 @@ namespace Projects.Fruit.Scripts
     public record FruitRecord
     {
         public readonly FruitType fruitType;
+        public readonly FruitScoreSign fruitScoreSign;
         public readonly double scoreAmount;
         public int generationCount;
 
-        public FruitRecord(FruitType fruitType, double scoreAmount)
+        public FruitRecord(FruitType fruitType,FruitScoreSign fruitScoreSign, double scoreAmount)
         {
             this.fruitType = fruitType;
+            this.fruitScoreSign = fruitScoreSign;
             this.scoreAmount = scoreAmount;
         }
     }
@@ -56,13 +58,13 @@ namespace Projects.Fruit.Scripts
         {
             var fruitType = _fruitRecord.fruitType;
             Debug.Log($"fruitType:{fruitType}を取得");
-            var fruitScoreType = DetermineFruitScoreType(fruitType);
+            var fruitScoreType =_fruitRecord.fruitScoreSign;
             switch (fruitScoreType)
             {
-                case FruitScoreType.Positive:
+                case FruitScoreSign.Positive:
                     _fruitScore.IncreaseScore(_fruitRecord.scoreAmount);
                     break;
-                case FruitScoreType.Negative:
+                case FruitScoreSign.Negative:
                     _fruitScore.DecreaseScore(_fruitRecord.scoreAmount);
                     break;
                 default:
@@ -81,29 +83,15 @@ namespace Projects.Fruit.Scripts
             _amplify.Amplify(transform);
         }
 
-        string DetermineScoreText(FruitScoreType fruitScoreType, double amount)
+        string DetermineScoreText(FruitScoreSign fruitScoreSign, double amount)
         {
-            return fruitScoreType switch
+            return fruitScoreSign switch
             {
-                FruitScoreType.Positive => $"+{amount}",
-                FruitScoreType.Negative => $"-{amount}",
-                _ => throw new ArgumentOutOfRangeException(nameof(fruitScoreType), fruitScoreType, null)
+                FruitScoreSign.Positive => $"+{amount}",
+                FruitScoreSign.Negative => $"-{amount}",
+                _ => throw new ArgumentOutOfRangeException(nameof(fruitScoreSign), fruitScoreSign, null)
             };
         }
 
-        FruitScoreType DetermineFruitScoreType(FruitType fruitType)
-        {
-            return fruitType switch
-            {
-                FruitType.Apple or FruitType.Bananas or FruitType.Cherries or FruitType.Kiwi or FruitType.Melon
-                    or FruitType.Orange or FruitType.Pineapple or FruitType.Strawberry
-                    => FruitScoreType.Positive,
-                FruitType.BadApple or FruitType.BadBananas or FruitType.BadCherries or FruitType.BadKiwi
-                    or FruitType.BadMelon
-                    or FruitType.BadOrange or FruitType.BadPineapple or FruitType.BadStrawberry
-                    => FruitScoreType.Negative,
-                _ => throw new ArgumentOutOfRangeException(nameof(fruitType), fruitType, null)
-            };
-        }
     }
 }

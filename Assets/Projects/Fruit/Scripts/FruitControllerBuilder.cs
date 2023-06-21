@@ -26,11 +26,11 @@ namespace Projects.Fruit.Scripts
             _fruitCountLimiter = fruitCountLimiter;
         }
 
-        public FruitController Build(FruitType fruitType, Vector3 position, int generationCount)
+        public FruitController Build(FruitType fruitType,FruitScoreSign fruitScoreSign, Vector3 position, int generationCount)
         {
-            var fruitPrefab = _loader.LoadFruitController(fruitType);
+            var fruitPrefab = _loader.LoadFruitController(fruitType, fruitScoreSign);
             var fruitController = Object.Instantiate(fruitPrefab, position, Quaternion.identity);
-            fruitController.Init(_factory.CreateFruit(fruitType, generationCount), _fruitCountLimiter);
+            fruitController.Init(_factory.CreateFruit(fruitType,fruitScoreSign, generationCount), _fruitCountLimiter);
             _fruitCountLimiter.IncreaseFruitCount();
             return fruitController;
         }

@@ -24,15 +24,6 @@ namespace Projects.Fruit.Scripts
         Orange,
         Pineapple,
         Strawberry,
-        BadApple,
-        BadBananas,
-        BadCherries,
-        BadKiwi,
-        BadMelon,
-        BadOrange,
-        BadPineapple,
-        BadStrawberry,
-        
     }
     public class FruitControllerLoader
     {
@@ -43,10 +34,12 @@ namespace Projects.Fruit.Scripts
             _fruitLoader = fruitLoader;
             _spriteLoader = prefabLoader;
         }
-        public FruitController LoadFruitController(FruitType fruitType)
+        public FruitController LoadFruitController(FruitType fruitType, FruitScoreSign fruitScoreSign)
         {
             // Spriteを読み込む
-            var sprite = _spriteLoader.Load(fruitType.ToString());
+            var spritePrefabName =
+                fruitScoreSign == FruitScoreSign.Positive ? fruitType.ToString() : "Bad" + fruitType.ToString();
+            var sprite = _spriteLoader.Load(spritePrefabName);
             var fruitController = _fruitLoader.Load("Fruit");
             fruitController.GetComponent<SpriteRenderer>().sprite = sprite;
             return fruitController;

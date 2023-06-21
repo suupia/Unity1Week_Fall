@@ -61,13 +61,13 @@ namespace Projects.Fruit.Scripts
         {
             var randomType = RandomType();
             var randomPosition = RandomPosition();
-            _fruitControllerBuilder.Build(RandomType(), RandomPosition(), 0);
+            _fruitControllerBuilder.Build(FruitType.Apple, RandomType(), RandomPosition(), 0);
         }
 
-        FruitType RandomType()
+        FruitScoreSign RandomType()
         {
             var random = UnityEngine.Random.Range(0, 1.0f);
-            var type = random > 0.3f ? FruitType.Apple : FruitType.BadApple;
+            var type = random > 0.3f ? FruitScoreSign.Positive :FruitScoreSign.Negative;
             return type;
         }
 

@@ -16,16 +16,16 @@ namespace Projects.Fruit.Scripts
         {
             _resolver = resolver;
         }
-        public IFruit  CreateFruit(FruitType fruitType, int generateCount)
+        public IFruit  CreateFruit(FruitType fruitType,FruitScoreSign fruitScoreSign, int generateCount)
         {
             var fruitBuilder = _resolver.Resolve<FruitControllerBuilder>();
             var fruitCountLimiter = _resolver.Resolve<FruitCountLimiter>();
-            var amplify = new DoubleAmplify(fruitBuilder, fruitCountLimiter,fruitType, generateCount); // とりあえずすべて共通なのでswitchの外に書ける
+            var amplify = new DoubleAmplify(fruitBuilder, fruitCountLimiter,fruitType,fruitScoreSign, generateCount); // とりあえずすべて共通なのでswitchの外に書ける
             var scoreTextSpawner = _resolver.Resolve<ScoreTextSpawner>();
-            return new Fruit(_resolver,amplify,scoreTextSpawner,DetermineFruitRecord(fruitType));
+            return new Fruit(_resolver,amplify,scoreTextSpawner,DetermineFruitRecord(fruitType, fruitScoreSign));
         }
 
-        FruitRecord DetermineFruitRecord(FruitType fruitType)
+        FruitRecord DetermineFruitRecord(FruitType fruitType, FruitScoreSign fruitScoreSign)
         {
             double scoreAmount = fruitType switch
             {
@@ -37,17 +37,9 @@ namespace Projects.Fruit.Scripts
                 FruitType.Orange => 60,
                 FruitType.Pineapple => 70,
                 FruitType.Strawberry => 80,
-                FruitType.BadApple => 10,
-                FruitType.BadBananas => 20,
-                FruitType.BadCherries => 30,
-                FruitType.BadKiwi => 40,
-                FruitType.BadMelon => 50,
-                FruitType.BadOrange => 60,
-                FruitType.BadPineapple => 70,
-                FruitType.BadStrawberry => 80,
                 _ => throw new ArgumentOutOfRangeException(nameof(fruitType), fruitType, null)
             };
-            return new FruitRecord(fruitType, scoreAmount);
+            return new FruitRecord(fruitType,fruitScoreSign, scoreAmount);
         }
     }
 }
