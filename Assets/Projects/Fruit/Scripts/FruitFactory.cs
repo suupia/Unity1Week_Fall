@@ -32,11 +32,11 @@ namespace Projects.Fruit.Scripts
                 FruitType.Apple => 10,
                 FruitType.Cherries => 30,
                 FruitType.Strawberry => 100,
-                FruitType.Melon => 300,
-                FruitType.Pineapple => 800,
-                FruitType.Orange => 2400,
-                FruitType.Bananas => 8000,
-                FruitType.Kiwi => 10000,
+                FruitType.Melon => 270,
+                FruitType.Pineapple => 1000,
+                FruitType.Orange => 3800,
+                FruitType.Bananas => 17000,
+                FruitType.Kiwi => 77000,
                 _ => throw new ArgumentOutOfRangeException(nameof(fruitType), fruitType, null)
             };
             return new FruitRecord(fruitType, fruitScoreSign, scoreAmount);
