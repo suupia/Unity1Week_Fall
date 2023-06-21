@@ -13,6 +13,7 @@ namespace Projects.Level.Scripts
         public void LevelUp()
         {
             CurrentLevel++; 
+            Debug.Log($"Level Up! Current Level: {CurrentLevel}");
         }
     }
 }

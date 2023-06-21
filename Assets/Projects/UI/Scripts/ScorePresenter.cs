@@ -20,12 +20,12 @@ namespace Projects.UI.Scripts
         [Inject]
         public void Construct(IFruitScore fruitScore)
         {
-            scoreText.text = fruitScore.Value.ToString();
+            scoreText.text = fruitScore.Amount.ToString();
             this.UpdateAsObservable()
-                .ObserveEveryValueChanged(_ => fruitScore.Value)
-                .Subscribe(_ => scoreText.text = ScoreFormat(fruitScore.Value));
+                .ObserveEveryValueChanged(_ => fruitScore.Amount)
+                .Subscribe(_ => scoreText.text = ScoreFormat(fruitScore.Amount));
         }
 
-        string ScoreFormat(long value) => $"Score : {value}";
+        string ScoreFormat(double value) => $"Score : {value}";
     }
 }

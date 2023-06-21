@@ -83,7 +83,8 @@ namespace Projects.Fruit.Scripts
         float CalculateSpawnIntervalSeconds()
         {
             var level = _levelManager.CurrentLevel;
-            var interval = _initSpawnIntervalSeconds - level * 0.5f;
+            var rate =level != 0 ?   1 / Mathf.Pow(level, 0.3f) : 1;
+            var interval = _initSpawnIntervalSeconds * rate;
             return interval;
         }
     }

@@ -1,50 +1,65 @@
-﻿using Level.Interfaces;
-using  Projects. Score.Interfaces;
+﻿using System;
+using Level.Interfaces;
+using Projects.Score.Interfaces;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 
-#nullable  enable
-namespace  Projects.Score.Script
+#nullable enable
+namespace Projects.Score.Script
 {
     public class FruitScore : IFruitScore
     {
-        public long Value => _increasedScore - _decreasedScore;
-        
-        long _increasedScore;
-        long _decreasedScore;
-        
-        ILevelManager _levelManager;
-        
+        // このクラスが肥大化していくと思うが、とりあえずはこのままで
+        // 数字を厳密に扱うために直観には沿わないつくりになる可能性が高い
+        public double Amount => _increasedScore - _decreasedScore;
+
+        double _increasedScore;
+        double _decreasedScore;
+        double _peakScore; // 到達したスコアの最大値 単調増加に鳴ることに注意
+
+        readonly ILevelManager _levelManager;
+        readonly JudgeLevelUp _judgeLevel;
+
         [Inject]
         public FruitScore(ILevelManager levelManager)
         {
             _levelManager = levelManager;
+            _judgeLevel = new JudgeLevelUp(levelManager);
         }
-        
+
         public void IncreaseScore(int value)
         {
             _increasedScore += value;
-            JudgeLevelUp(_increasedScore);
+            _judgeLevel. UpdatePeakScore(Amount);
         }
+
         public void DecreaseScore(int value)
         {
             _decreasedScore += value;
+            _judgeLevel. UpdatePeakScore(Amount);
         }
         
         
-        // 以下は別クラスに切り出す予定
-        bool isLevelUped;
-        void JudgeLevelUp(long amount)
+    }
+
+    public class JudgeLevelUp
+    {
+        double _peakScore; // 到達したスコアの最大値 単調増加になることに注意
+        readonly ILevelManager _levelManager;
+
+        readonly Func<long, double> _levelUpJudge = (level) => Mathf.Pow(100, level); // レベルアップの成長曲線を決める
+
+        public JudgeLevelUp(ILevelManager levelManager)
         {
-            if(isLevelUped) return;
-            if (amount >= 100)
-            {
-                _levelManager.LevelUp();
-                Debug.Log($"LevelUp! CurrentLevel : {_levelManager.CurrentLevel}");
-                isLevelUped = true;
-            }
-            
+            _levelManager = levelManager;
         }
-        
+
+        public void UpdatePeakScore(double amount)
+        {
+            _peakScore = _peakScore >= amount ? _peakScore : amount;
+            if(_levelUpJudge(_levelManager.CurrentLevel) <= _peakScore) _levelManager.LevelUp();
+        }
     }
 }

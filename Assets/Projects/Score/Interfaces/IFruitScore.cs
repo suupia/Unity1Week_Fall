@@ -2,7 +2,7 @@
 {
     public interface IFruitScore
     {
-        long Value { get; }
+        double Amount { get; }
         
         void IncreaseScore(int value);
         void DecreaseScore(int value);

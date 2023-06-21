@@ -22,7 +22,7 @@ namespace Projects.Score.Script
 
         public void Init(FruitScoreType type, string text)
         {
-            Debug.Log($"Init FruitScoreTextController");
+            // Debug.Log($"Init FruitScoreTextController");
             var pos = transform.position;
             transform.position = new Vector2(pos.x, pos.y + _offsetHeight);
 
