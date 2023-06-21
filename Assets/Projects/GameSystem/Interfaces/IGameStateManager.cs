@@ -8,8 +8,9 @@ namespace Projects.GameSystem.Interfaces
         Game,
         Result
     }
-    public interface IGameState
+    public interface IGameStateManager
     {
-        GameState CurrentState { get; set; }
+        GameState CurrentState { get;  }
+         void ChangeState(GameState state);
     }
 }

@@ -19,18 +19,18 @@ namespace Projects.Player.Scripts
 
         [SerializeField] GameObject paddleObj; // widthを取るために必要 localScale.xで取得している
 
-        IGameState _gameState;
+        IGameStateManager _gameStateManager;
         StageManager _stageManager;
 
         // Constructでインジェクトできるのは、最初からシーン上にあるため
         [Inject]
-        public void Construct(IGameState gameState, StageManager stageManager)
+        public void Construct(IGameStateManager gameStateManager, StageManager stageManager)
         {
-            _gameState = gameState;
+            _gameStateManager = gameStateManager;
             _stageManager = stageManager;
             
             Observable.EveryUpdate()
-                .Where(_ => _gameState.CurrentState == GameState.Game)
+                .Where(_ => _gameStateManager.CurrentState == GameState.Game)
                 .Select(_ => Input.GetAxisRaw("Horizontal"))
                 .Where(CanMove)
                 .Subscribe(Move)

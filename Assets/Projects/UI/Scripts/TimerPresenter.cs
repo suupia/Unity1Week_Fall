@@ -28,6 +28,6 @@ namespace Projects.UI.Scripts
                 .Subscribe(_ => timerText.text = TimerFormat(stateTimer.RemainingTime));
         }
 
-        string TimerFormat(float value) => $"Time : {value} s";
+        string TimerFormat(float value) => $"Time : {Mathf.Floor(value)} s";
     }
 }

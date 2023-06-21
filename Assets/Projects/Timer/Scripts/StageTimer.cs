@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Projects.GameSystem.Interfaces;
 using UniRx;
 using UnityEngine;
+using VContainer;
+
 #nullable enable
 namespace Projects.Timer.Scripts
 {
@@ -11,10 +14,15 @@ namespace Projects.Timer.Scripts
         public bool IsTimeUp => RemainingTime <= 0;
         public float RemainingTime { get; private set; }
         readonly float _timeLimit = 60;
-        
 
-
+        readonly IGameStateManager _gameStateManager;
         IDisposable _timerSubscription;
+
+        [Inject]
+        public StageTimer(IGameStateManager gameStateManager)
+        {
+            _gameStateManager = gameStateManager;
+        }
 
         public void Dispose()
         {
@@ -24,9 +32,12 @@ namespace Projects.Timer.Scripts
         public void StartTimer()
         {
             RemainingTime = _timeLimit;
-            _timerSubscription = Observable.EveryUpdate()
-                .ThrottleFirst(TimeSpan.FromSeconds(Time.deltaTime))
-                .Subscribe(_ => RemainingTime -= Time.deltaTime);
+            _timerSubscription = Observable.Interval(TimeSpan.FromSeconds(1))
+                .Subscribe(_ => RemainingTime--);
+
+            this.ObserveEveryValueChanged(_ => _.IsTimeUp)
+                .Where(isTimeUp => isTimeUp && _gameStateManager.CurrentState == GameState.Game)
+                .Subscribe(_ => _gameStateManager.ChangeState(GameState.Result));
         }
     }
 }

@@ -11,6 +11,7 @@ using Projects.Stage.Scripts;
 using Projects.Utility;
 using Projects.Score.Interfaces;
 using Projects.Score.Script;
+using Projects.Timer.Scripts;
 
 
 namespace Projects.GameSystem.Scripts
@@ -28,7 +29,7 @@ namespace Projects.GameSystem.Scripts
                 .As<IPrefabLoader<LaserController>>().WithParameter("folderPath", "Prefabs/Lasers");
             
             // GameSystem
-            builder.Register<InGameStateManager>(Lifetime.Singleton).As<IGameState>(); // ToDo: Tmp
+            builder.Register<GameStateManagerManager>(Lifetime.Singleton).As<IGameStateManager>();
             builder.Register<StageManager>(Lifetime.Singleton);
             
             // Fruits
@@ -45,6 +46,9 @@ namespace Projects.GameSystem.Scripts
             
             // Score
             builder.Register<FruitFruitScore>(Lifetime.Singleton).As<IFruitScore>();
+            
+            // Timer
+            builder.Register<StageTimer>(Lifetime.Singleton);
         }
     }
 }
