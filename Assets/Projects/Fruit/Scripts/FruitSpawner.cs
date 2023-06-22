@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Level.Interfaces;
+using Projects.GameSystem.Interfaces;
 using Projects.Stage.Scripts;
 using UnityEngine;
 using VContainer;
@@ -23,24 +24,28 @@ namespace Projects.Fruit.Scripts
         readonly FruitControllerBuilder _fruitControllerBuilder;
         readonly ILevelManager _levelManager;
         readonly FruitTypeSelector _fruitTypeSelector;
-
+        readonly IGameStateManager _gameStateManager;
+        
         readonly float _initSpawnIntervalSeconds = 1.0f;
 
         IDisposable? _spawnSubscription;
+        IDisposable? _levelSubscription;
 
         [Inject]
         public FruitSpawner(StageManager stageManager,
-            FruitControllerBuilder fruitControllerBuilder, ILevelManager levelManager, FruitTypeSelector fruitTypeSelector)
+            FruitControllerBuilder fruitControllerBuilder, ILevelManager levelManager, FruitTypeSelector fruitTypeSelector,IGameStateManager gameStateManager)
         {
             _stageManager = stageManager;
             _fruitControllerBuilder = fruitControllerBuilder;
             _levelManager = levelManager;
             _fruitTypeSelector = fruitTypeSelector;
+            _gameStateManager = gameStateManager;
         }
 
         public void Dispose()
         {
             _spawnSubscription?.Dispose();
+            _levelSubscription?.Dispose();
         }
 
         public void StartSpawn()
@@ -48,12 +53,20 @@ namespace Projects.Fruit.Scripts
             _spawnSubscription = Observable.Interval(TimeSpan.FromSeconds(CalculateSpawnIntervalSeconds()))
                 .Subscribe(_ => Spawn());
 
-            _levelManager.ObserveEveryValueChanged(x => x.CurrentLevel)
+            _levelSubscription =  _levelManager.ObserveEveryValueChanged(x => x.CurrentLevel)
                 .Subscribe(_ =>
                 {
                     _spawnSubscription.Dispose();
                     _spawnSubscription = Observable.Interval(TimeSpan.FromSeconds(CalculateSpawnIntervalSeconds()))
                         .Subscribe(_ => Spawn());
+                });
+            
+            _gameStateManager.ObserveEveryValueChanged(x => x.CurrentState)
+                .Where(x => x == GameState.Result)
+                .Subscribe(_=>
+                {
+                    _spawnSubscription?.Dispose();
+                    _levelSubscription?.Dispose();
                 });
         }
 
