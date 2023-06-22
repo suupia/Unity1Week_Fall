@@ -33,6 +33,7 @@ namespace Projects.Timer.Scripts
         {
             RemainingTime = _timeLimit;
             _timerSubscription = Observable.Interval(TimeSpan.FromSeconds(1))
+                .Where(_ => _gameStateManager.CurrentState == GameState.Game)
                 .Subscribe(_ => RemainingTime--);
 
             this.ObserveEveryValueChanged(_ => _.IsTimeUp)
