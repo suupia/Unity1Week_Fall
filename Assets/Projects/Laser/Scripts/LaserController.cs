@@ -6,10 +6,15 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using VContainer;
+using DG.Tweening;
 
 public class LaserController : MonoBehaviour
 {
     StageManager _stageManager;
+    [SerializeField] GameObject beamBody; // 発射時にビームの幅を調整する
+    float _halfDuration = 0.1f;
+    float _maxThickness;
+    
     [Inject]
     public void Construct(StageManager stageManager)
     {
@@ -18,6 +23,9 @@ public class LaserController : MonoBehaviour
             .Where(_ => Input.GetKeyDown(KeyCode.Space))
             .Subscribe(_=> FireLaser())
             .AddTo(this);
+        
+        _maxThickness = beamBody.transform.localScale.y;
+        beamBody.transform.localScale = new Vector3(1, 0, 1);
     }
     
     
@@ -35,7 +43,20 @@ public class LaserController : MonoBehaviour
 
         // Raycast
         RaycastHit2D[] hits = Physics2D.RaycastAll(position, direction, range);
-    
+        // Raycastの情報を可視化
+        foreach (var hit in hits)
+        {
+            Debug.DrawRay(position, direction * hit.distance, Color.red,3);
+            Debug.Log("Hit object: " + hit.collider.gameObject.name);
+        }
+        
+        // DoTweenで大きさを変更
+        DOTween.Sequence()
+            .OnStart(() => beamBody.transform.localScale = new Vector3(1, 0, 1))
+            .Append(beamBody.transform.DOScaleY(_maxThickness, _halfDuration))
+            .Append(beamBody.transform.DOScaleY(0, _halfDuration))
+            .Play();
+
         // Loop over every object that the raycast hit
         foreach (var hit in hits)
         {
