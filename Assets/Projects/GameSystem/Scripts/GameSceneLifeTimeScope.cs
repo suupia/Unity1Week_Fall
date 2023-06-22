@@ -64,6 +64,9 @@ namespace Projects.GameSystem.Scripts
 
             // SE
             builder.RegisterComponentInHierarchy<SEController>(); // ヒエラルキー上のMonoBehaviourを登録
+            
+            // Restart
+            builder.RegisterComponentInHierarchy<RestartController>(); // ヒエラルキー上のMonoBehaviourを登録
         }
     }
 }

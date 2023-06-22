@@ -7,6 +7,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using VContainer;
 using DG.Tweening;
+using Projects.GameSystem.Interfaces;
 using Projects.SE.Scripts;
 
 public class LaserController : MonoBehaviour
@@ -19,11 +20,12 @@ public class LaserController : MonoBehaviour
     SEController _seController;
     
     [Inject]
-    public void Construct(StageManager stageManager, SEController seController)
+    public void Construct(StageManager stageManager, SEController seController, IGameStateManager gameStateManager)
     {
         _stageManager = stageManager;
         _seController = seController;
         Observable.EveryUpdate()
+            .Where(_ => gameStateManager.CurrentState == GameState.Game)
             .Where(_ => Input.GetKeyDown(KeyCode.Space))
             .Subscribe(_=> FireLaser())
             .AddTo(this);
