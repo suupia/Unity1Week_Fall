@@ -7,6 +7,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using VContainer;
 using DG.Tweening;
+using Projects.SE.Scripts;
 
 public class LaserController : MonoBehaviour
 {
@@ -14,11 +15,14 @@ public class LaserController : MonoBehaviour
     [SerializeField] GameObject beamBody; // 発射時にビームの幅を調整する
     readonly float _halfDuration = 0.08f;
     float _maxThickness;
+
+    SEController _seController;
     
     [Inject]
-    public void Construct(StageManager stageManager)
+    public void Construct(StageManager stageManager, SEController seController)
     {
         _stageManager = stageManager;
+        _seController = seController;
         Observable.EveryUpdate()
             .Where(_ => Input.GetKeyDown(KeyCode.Space))
             .Subscribe(_=> FireLaser())
@@ -40,6 +44,10 @@ public class LaserController : MonoBehaviour
         // オブジェクトの真ん中が射程の中心になるように左からRayを飛ばす
         var positionX = transform.position.x - range /2.0f;
         var position = new Vector2(positionX, transform.position.y);
+        
+        // SEを再生
+        _seController.PlayFireLaserSE();
+
 
         // Raycast
         RaycastHit2D[] hits = Physics2D.RaycastAll(position, direction, range);

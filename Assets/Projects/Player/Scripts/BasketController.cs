@@ -9,6 +9,7 @@ using VContainer;
 using UniRx;
 using UniRx.Triggers;
 using Projects.Fruit.Scripts;
+using Projects.SE.Scripts;
 
 namespace Projects.Player.Scripts
 {
@@ -21,13 +22,15 @@ namespace Projects.Player.Scripts
 
         IGameStateManager _gameStateManager;
         StageManager _stageManager;
+        SEController _seController;
 
         // Constructでインジェクトできるのは、最初からシーン上にあるため
         [Inject]
-        public void Construct(IGameStateManager gameStateManager, StageManager stageManager)
+        public void Construct(IGameStateManager gameStateManager, StageManager stageManager, SEController seController)
         {
             _gameStateManager = gameStateManager;
             _stageManager = stageManager;
+            _seController = seController;
             
             Observable.EveryUpdate()
                 .Where(_ => _gameStateManager.CurrentState == GameState.Game)
@@ -67,6 +70,7 @@ namespace Projects.Player.Scripts
             {
                 // BounceOff(fruitController);
                 fruitController.Fruit.OnEnterBasket(fruitController.gameObject);
+                _seController.PlayGetFruitSE();
             }
         }
     }

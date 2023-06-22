@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using BGM.Scripts;
+using Projects.BGM.Scripts;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
 using Projects.GameSystem.Interfaces;

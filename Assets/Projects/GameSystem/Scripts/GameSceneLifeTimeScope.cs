@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using BGM.Scripts;
+using Projects.BGM.Scripts;
 using Level.Interfaces;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
@@ -15,6 +15,7 @@ using Projects.Utility;
 using Projects.Score.Interfaces;
 using Projects.Score.Script;
 using Projects.Timer.Scripts;
+using Projects.SE.Scripts;
 
 
 namespace Projects.GameSystem.Scripts
@@ -30,11 +31,11 @@ namespace Projects.GameSystem.Scripts
                 .As<IPrefabLoader<FruitController>>().WithParameter("folderPath", "Prefabs/Fruits");
             builder.Register<PrefabLoaderFromResources<LaserController>>(Lifetime.Singleton)
                 .As<IPrefabLoader<LaserController>>().WithParameter("folderPath", "Prefabs/Lasers");
-            
+
             // GameSystem
             builder.Register<GameStateManagerManager>(Lifetime.Singleton).As<IGameStateManager>();
             builder.Register<StageManager>(Lifetime.Singleton);
-            
+
             // Fruits
             builder.Register<FruitFactory>(Lifetime.Singleton);
             builder.Register<FruitControllerLoader>(Lifetime.Singleton);
@@ -42,24 +43,27 @@ namespace Projects.GameSystem.Scripts
             builder.Register<FruitSpawner>(Lifetime.Singleton);
             builder.Register<FruitCountLimiter>(Lifetime.Singleton);
             builder.Register<FruitTypeSelector>(Lifetime.Singleton);
-            
+
 
             // Laser
             builder.Register<LaserCreator>(Lifetime.Singleton);
             builder.Register<LaserSpawner>(Lifetime.Singleton);
-            
+
             // Score
             builder.Register<FruitScore>(Lifetime.Singleton).As<IFruitScore>();
             builder.Register<ScoreTextSpawner>(Lifetime.Singleton);
-            
+
             // Timer
             builder.Register<StageTimer>(Lifetime.Singleton);
-            
+
             // Level
             builder.Register<LevelManager>(Lifetime.Singleton).As<ILevelManager>();
-            
+
             // BGM
             builder.RegisterComponentInHierarchy<BGMController>(); // ヒエラルキー上のMonoBehaviourを登録
+
+            // SE
+            builder.RegisterComponentInHierarchy<SEController>(); // ヒエラルキー上のMonoBehaviourを登録
         }
     }
 }

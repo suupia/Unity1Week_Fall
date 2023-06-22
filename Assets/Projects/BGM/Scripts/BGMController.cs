@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UIElements;
 using VContainer;
-namespace BGM.Scripts
+namespace Projects.BGM.Scripts
 {
     public class BGMController : MonoBehaviour
     {
