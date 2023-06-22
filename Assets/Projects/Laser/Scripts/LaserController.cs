@@ -12,7 +12,7 @@ public class LaserController : MonoBehaviour
 {
     StageManager _stageManager;
     [SerializeField] GameObject beamBody; // 発射時にビームの幅を調整する
-    float _halfDuration = 0.1f;
+    readonly float _halfDuration = 0.08f;
     float _maxThickness;
     
     [Inject]
@@ -53,8 +53,8 @@ public class LaserController : MonoBehaviour
         // DoTweenで大きさを変更
         DOTween.Sequence()
             .OnStart(() => beamBody.transform.localScale = new Vector3(1, 0, 1))
-            .Append(beamBody.transform.DOScaleY(_maxThickness, _halfDuration))
-            .Append(beamBody.transform.DOScaleY(0, _halfDuration))
+            .Append(beamBody.transform.DOScaleY(_maxThickness, _halfDuration).SetEase(Ease.InCubic))
+            .Append(beamBody.transform.DOScaleY(0, _halfDuration).SetEase(Ease.OutCubic))
             .Play();
 
         // Loop over every object that the raycast hit
