@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BGM.Scripts;
 using Level.Interfaces;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
@@ -55,7 +56,10 @@ namespace Projects.GameSystem.Scripts
             builder.Register<StageTimer>(Lifetime.Singleton);
             
             // Level
-            builder.Register<LevelManager>(Lifetime.Singleton).As<ILevelManager>(); // ToDo: Tmp
+            builder.Register<LevelManager>(Lifetime.Singleton).As<ILevelManager>();
+            
+            // BGM
+            builder.RegisterComponentInHierarchy<BGMController>(); // ヒエラルキー上のMonoBehaviourを登録
         }
     }
 }

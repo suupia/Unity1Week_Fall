@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using BGM.Scripts;
 using Projects.Fruit.Interfaces;
 using Projects.Fruit.Scripts;
 using Projects.GameSystem.Interfaces;
@@ -20,13 +21,15 @@ namespace Projects.GameSystem.Scripts
         [Inject] IGameStateManager _gameStateManagerManager;
         [Inject] FruitSpawner _fruitSpawner;
         [Inject] LaserSpawner _laserSpawner;
-        [Inject] StageTimer _stageTimer;   
+        [Inject] StageTimer _stageTimer;
+        [Inject] BGMController _bgmController;
         void Start()
         {
             _gameStateManagerManager.ChangeState(GameState.Game);
             _fruitSpawner.StartSpawn();
             _laserSpawner.StartSpawn();
             _stageTimer.StartTimer();
+            _bgmController.PlayBGM();
         }
     }
 }
