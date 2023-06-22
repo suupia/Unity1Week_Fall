@@ -87,8 +87,8 @@ namespace Projects.Fruit.Scripts
         {
             return fruitScoreSign switch
             {
-                FruitScoreSign.Positive => $"+{amount}",
-                FruitScoreSign.Negative => $"-{amount}",
+                FruitScoreSign.Positive => $"+{NumberFormatter.FormatNumber(amount)}",
+                FruitScoreSign.Negative => $"-{NumberFormatter.FormatNumber(amount)}",
                 _ => throw new ArgumentOutOfRangeException(nameof(fruitScoreSign), fruitScoreSign, null)
             };
         }

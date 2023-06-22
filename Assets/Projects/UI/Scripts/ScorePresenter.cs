@@ -9,6 +9,7 @@ using UniRx;
 using UniRx.Triggers;
 using TMPro;
 using Projects.Score.Interfaces;
+using Projects.Utility;
 
 namespace Projects.UI.Scripts
 {
@@ -34,7 +35,7 @@ namespace Projects.UI.Scripts
                         scoreText.color = new Color(132 / 255.0f, 17/ 255.0f, 17/ 255.0f);
                     }
 
-                    scoreText.text = $"Score : {fruitScore.Amount}";
+                    scoreText.text = $"Score : {NumberFormatter.FormatNumber(fruitScore.Amount)}";
                 });
         }
 
