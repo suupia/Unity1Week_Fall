@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 358897837}
   - component: {fileID: 358897838}
   m_Layer: 0
-  m_Name: BGMController
+  m_Name: StageBGMPresenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3957,6 +3957,7 @@ MonoBehaviour:
   - {fileID: 1203060625}
   - {fileID: 1490530772}
   - {fileID: 1962463569}
+  - {fileID: 358897836}
 --- !u!4 &1977259714
 Transform:
   m_ObjectHideFlags: 0

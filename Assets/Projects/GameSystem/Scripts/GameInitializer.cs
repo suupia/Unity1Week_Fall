@@ -22,14 +22,14 @@ namespace Projects.GameSystem.Scripts
         [Inject] FruitSpawner _fruitSpawner;
         [Inject] LaserSpawner _laserSpawner;
         [Inject] StageTimer _stageTimer;
-        [Inject] BGMController _bgmController;
+        [Inject] StageBGMPresenter _stageBGMPresenter;
         void Start()
         {
             _gameStateManagerManager.ChangeState(GameState.Game);
             _fruitSpawner.StartSpawn();
             _laserSpawner.StartSpawn();
             _stageTimer.StartTimer();
-            _bgmController.PlayBGM();
+            _stageBGMPresenter.PlayBGM();
         }
     }
 }
