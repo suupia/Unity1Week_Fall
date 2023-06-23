@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Projects.GameSystem.Interfaces;
 using Projects.Score.Interfaces;
+using Projects.UI.Buttons.Scripts;
 using Projects.Utility;
 using TMPro;
 using UniRx;
@@ -14,6 +15,7 @@ public class ResultPresenter : MonoBehaviour
 {
     [SerializeField] GameObject resultParent;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TwitterButtonController twitterButtonController;
     
     readonly float _waitTime = 2.2f;  // Result中にScoreが増えないようにするための待機時間
    
@@ -34,5 +36,7 @@ public class ResultPresenter : MonoBehaviour
         gameStateManger.ChangeState(GameState.Result);
         scoreText = ScoreFormatter.FormatScore(scoreText, fruitScore.Amount);
         resultParent.SetActive(true);
+        
+        twitterButtonController.SetScore(fruitScore.Amount);
     }
 }

@@ -5,11 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class ReturnToTitleButtonController : ButtonAnimationOnRollOver, IPointerClickHandler
+namespace Projects.UI.Buttons.Scripts
 {
-    public void OnPointerClick(PointerEventData eventData)
+    public class ReturnToTitleButtonController : ButtonAnimationOnRollOver, IPointerClickHandler
     {
-        SceneManager.LoadScene(0);
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
-
