@@ -62,7 +62,7 @@ namespace Projects.Fruit.Scripts
                 });
             
             _gameStateManager.ObserveEveryValueChanged(x => x.CurrentState)
-                .Where(x => x == GameState.Result)
+                .Where(x => x == GameState.PreparingResult)
                 .Subscribe(_=>
                 {
                     _spawnSubscription?.Dispose();

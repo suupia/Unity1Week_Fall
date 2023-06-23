@@ -6,6 +6,7 @@ namespace Projects.GameSystem.Interfaces
     {
         Title,
         Game,
+        PreparingResult, // Resultに移行するまでの準備時間中はこのステートとなる
         Result
     }
     public interface IGameStateManager

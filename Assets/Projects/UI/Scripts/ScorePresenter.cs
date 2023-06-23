@@ -17,25 +17,18 @@ namespace Projects.UI.Scripts
     {
         [SerializeField] TextMeshProUGUI scoreText;
 
-
         [Inject]
         public void Construct(IFruitScore fruitScore)
         {
-            scoreText.text = fruitScore.Amount.ToString();
+            // 初期化
+            scoreText = ScoreFormatter.FormatScore(scoreText, fruitScore.Amount);
+            
+            
             this.UpdateAsObservable()
                 .ObserveEveryValueChanged(_ => fruitScore.Amount)
                 .Subscribe(_ =>
                 {
-                    if (fruitScore.Amount >= 0)
-                    {
-                        scoreText.color = Color.black;
-                    }
-                    else
-                    {
-                        scoreText.color = new Color(132 / 255.0f, 17/ 255.0f, 17/ 255.0f);
-                    }
-
-                    scoreText.text = $"Score : {NumberFormatter.FormatNumber(fruitScore.Amount)}";
+                    scoreText = ScoreFormatter.FormatScore(scoreText, fruitScore.Amount);
                 });
         }
 

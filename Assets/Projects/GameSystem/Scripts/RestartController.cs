@@ -9,11 +9,13 @@ using VContainer;
 
 public class RestartController : MonoBehaviour
 {
+
     [Inject]
     public void Construct(IGameStateManager gameStateManger)
     {
         Observable.EveryUpdate()
             .Where(_ => gameStateManger.CurrentState == GameState.Game ||
+                        gameStateManger.CurrentState == GameState.PreparingResult ||
                         gameStateManger.CurrentState == GameState.Result)
             .Where(_ => Input.GetKeyDown(KeyCode.Escape))
             .Subscribe(_ => RestartGame())

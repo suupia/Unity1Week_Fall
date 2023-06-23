@@ -33,7 +33,7 @@ namespace Projects.Player.Scripts
             _seController = seController;
             
             Observable.EveryUpdate()
-                .Where(_ => _gameStateManager.CurrentState == GameState.Game)
+                // .Where(_ => _gameStateManager.CurrentState == GameState.Game) // Result中にも動くように変更
                 .Select(_ => Input.GetAxisRaw("Horizontal"))
                 .Where(CanMove)
                 .Subscribe(Move)
