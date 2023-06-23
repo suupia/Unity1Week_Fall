@@ -16,6 +16,7 @@ public class ResultPresenter : MonoBehaviour
     [SerializeField] GameObject resultParent;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TwitterButtonController twitterButtonController;
+    [SerializeField] RankingButtonController rankingButtonController;
     
     readonly float _waitTime = 2.2f;  // Result中にScoreが増えないようにするための待機時間
    
@@ -37,6 +38,10 @@ public class ResultPresenter : MonoBehaviour
         scoreText = ScoreFormatter.FormatScore(scoreText, fruitScore.Amount);
         resultParent.SetActive(true);
         
+        // Twitterボタンのスコアをセット
         twitterButtonController.SetScore(fruitScore.Amount);
+        
+        // Rankingボタンのスコアをセット
+        rankingButtonController.SetScore(fruitScore.Amount);
     }
 }
