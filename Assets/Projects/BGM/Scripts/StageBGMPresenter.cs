@@ -93,6 +93,10 @@ namespace Projects.BGM.Scripts
             // イントロとメロディ＆ベースは最初から流す
             _bgmAudioStates[0].AudioSource.volume = _targetVolume;
             _bgmAudioStates[1].AudioSource.volume =  _targetVolume;
+            for(int i = 2 ; i< _bgmAudioStates.Length; i++)
+            {
+                _bgmAudioStates[i].AudioSource.volume = 0;
+            }
 
             foreach (var audioState in _bgmAudioStates)
             {
