@@ -58,6 +58,7 @@ namespace Projects.GameSystem.Scripts
 
             // Level
             builder.Register<LevelManager>(Lifetime.Singleton).As<ILevelManager>();
+            builder.Register<JudgeLevelUp>(Lifetime.Singleton);
 
             // BGM
             builder.RegisterComponentInHierarchy<BGMController>(); // ヒエラルキー上のMonoBehaviourを登録

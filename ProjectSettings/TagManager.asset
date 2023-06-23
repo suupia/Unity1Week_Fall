@@ -47,3 +47,6 @@ TagManager:
   - name: Fruits
     uniqueID: 2929667741
     locked: 0
+  - name: TextEffect
+    uniqueID: 1103990333
+    locked: 0

@@ -13,7 +13,7 @@ namespace Projects.Timer.Scripts
     {
         public bool IsTimeUp => RemainingTime <= 0;
         public float RemainingTime { get; private set; }
-        readonly float _timeLimit = 5;  // ToDo: Tmp
+        readonly float _timeLimit = 60;  // ToDo: Tmp
 
         readonly IGameStateManager _gameStateManager;
         IDisposable _timerSubscription;
