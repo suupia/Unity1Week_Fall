@@ -1608,7 +1608,7 @@ GameObject:
   - component: {fileID: 728970772}
   - component: {fileID: 728970774}
   m_Layer: 0
-  m_Name: Paddle
+  m_Name: Basket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
