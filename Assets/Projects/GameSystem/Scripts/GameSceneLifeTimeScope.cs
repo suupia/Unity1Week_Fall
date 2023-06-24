@@ -33,7 +33,6 @@ namespace Projects.GameSystem.Scripts
                 .As<IPrefabLoader<LaserController>>().WithParameter("folderPath", "Prefabs/Lasers");
 
             // GameSystem
-            builder.Register<GameStateManagerManager>(Lifetime.Singleton).As<IGameStateManager>();
             builder.Register<StageManager>(Lifetime.Singleton);
 
             // Fruits

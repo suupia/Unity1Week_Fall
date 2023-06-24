@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Projects.BGM.Scripts;
+using Projects.GameSystem.Interfaces;
+using Projects.GameSystem.Scripts;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -11,7 +13,10 @@ public class RootLifeTimeScope : LifetimeScope
     {
         base.Configure(builder);
 
-        // 子のLifetimeScopeに同じMusicVolumeContainerを引き渡す
+        // GameSystem
+        builder.Register<GameStateManagerManager>(Lifetime.Singleton).As<IGameStateManager>();
+        
+        // Music
         builder.Register<MusicVolumeContainer>(Lifetime.Singleton);
     }
 }
