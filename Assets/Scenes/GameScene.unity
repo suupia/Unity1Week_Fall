@@ -3771,8 +3771,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level Up !!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 993a197e294713b4abd111e637b24ea3, type: 2}
-  m_sharedMaterial: {fileID: 233318893619804426, guid: 993a197e294713b4abd111e637b24ea3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe2716b4024bd0d429d75af50bf2cd4c, type: 2}
+  m_sharedMaterial: {fileID: 233318893619804426, guid: fe2716b4024bd0d429d75af50bf2cd4c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3861,7 +3861,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 233318893619804426, guid: 993a197e294713b4abd111e637b24ea3, type: 2}
+  - {fileID: 233318893619804426, guid: fe2716b4024bd0d429d75af50bf2cd4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
