@@ -2176,6 +2176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireLaserSE: {fileID: 8300000, guid: f11478b174c49d94da13499d07033fd3, type: 3}
   getFruitSE: {fileID: 8300000, guid: f7bbc75eabb6f3a479a2a90fcd50d2d9, type: 3}
+  levelUpSE: {fileID: 8300000, guid: c6925ae89c662474aa85c6796814962d, type: 3}
 --- !u!82 &1203060627
 AudioSource:
   m_ObjectHideFlags: 0

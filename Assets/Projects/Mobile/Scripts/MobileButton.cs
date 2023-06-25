@@ -42,8 +42,10 @@ namespace Projects.Mobile.Scripts
             _gameStateManager = GameObject.Find("LifeTimeScope").GetComponent<LifetimeScope>().Container.Resolve<IGameStateManager>();
 
             this.ObserveEveryValueChanged(x => x._gameStateManager.CurrentState)
-                .Where(x => x == GameState.Result)
-                .Subscribe(_ => gameObject.SetActive(false));
+                .Subscribe(x =>
+                {
+                    gameObject.SetActive(x == GameState.Game);
+                });
         }
 
         void Update()

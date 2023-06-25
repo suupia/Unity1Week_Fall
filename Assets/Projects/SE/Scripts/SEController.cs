@@ -8,6 +8,7 @@ namespace Projects.SE.Scripts
     {
         [SerializeField] AudioClip fireLaserSE;
         [SerializeField] AudioClip getFruitSE;
+        [SerializeField] AudioClip levelUpSE;
         AudioSource _seAudioSource;
         
         [Inject]
@@ -25,6 +26,12 @@ namespace Projects.SE.Scripts
         {
             _seAudioSource.clip = getFruitSE;
             _seAudioSource.PlayOneShot(getFruitSE);
+        }
+
+        public void PlayLevelUpSE()
+        {
+            _seAudioSource.clip = levelUpSE;
+            _seAudioSource.PlayOneShot(levelUpSE);
         }
     }
 }
