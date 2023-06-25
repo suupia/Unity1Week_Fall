@@ -1,6 +1,10 @@
-﻿using Projects.Player.Scripts;
+﻿using Projects.GameSystem.Interfaces;
+using Projects.Player.Scripts;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using VContainer.Unity;
+using VContainer;
 
 namespace Projects.Mobile.Scripts
 {
@@ -18,6 +22,9 @@ namespace Projects.Mobile.Scripts
 
         BasketController _basketController;
         LaserController _laserController;
+        
+        IGameStateManager _gameStateManager;
+        
 
         void Start()
         {
@@ -30,6 +37,13 @@ namespace Projects.Mobile.Scripts
             _basketController = GameObject.Find("Basket").GetComponent<BasketController>();
 
             // laserControllerは動的に生成されるため、Start()で取得できない
+            
+            // gameStateManagerをヒエラルキー上から取得する
+            _gameStateManager = GameObject.Find("LifeTimeScope").GetComponent<LifetimeScope>().Container.Resolve<IGameStateManager>();
+
+            this.ObserveEveryValueChanged(x => x._gameStateManager.CurrentState)
+                .Where(x => x == GameState.Result)
+                .Subscribe(_ => gameObject.SetActive(false));
         }
 
         void Update()
