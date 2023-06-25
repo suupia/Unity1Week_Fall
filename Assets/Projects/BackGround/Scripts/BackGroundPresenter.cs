@@ -15,6 +15,8 @@ namespace BackGround.Scripts
         [SerializeField]  Sprite[] backGroundSprites;
         [SerializeField]  float transitionDuration = 1f;
         
+        Sequence _backGroundSequence;
+        
 
         [Inject]
         public void Construct(ILevelManager levelManager)
@@ -24,7 +26,8 @@ namespace BackGround.Scripts
                 {
                     if (level < backGroundSprites.Length)
                     {
-                        DOTween.Sequence()
+                        KillBackGroundSequence(levelManager);
+                        _backGroundSequence =  DOTween.Sequence()
                             .OnStart(() =>
                             {
                                 // transitionImageのspriteを次の者にする
@@ -44,6 +47,18 @@ namespace BackGround.Scripts
                             .Play();
                     }
                 });
+        }
+        
+        void KillBackGroundSequence(ILevelManager levelManager)
+        {
+            // 前回の状況をKillする
+            if (_backGroundSequence != null)
+            {
+                backGroundImage.sprite = backGroundSprites[levelManager.CurrentLevel - 1];
+                backGroundImage.color = new Color(1, 1, 1, 1);
+                backGroundTransitionImage.color = new Color(1, 1, 1, 0);
+                _backGroundSequence.Kill();
+            }
         }
         
     }
