@@ -15,7 +15,7 @@ namespace Projects.Mobile.Scripts
         Space,
     }
 
-    public class MobileButton : UIBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         [SerializeField] ButtonType buttonType; // インスペクター上で設定
         bool isPressed;
@@ -28,10 +28,10 @@ namespace Projects.Mobile.Scripts
 
         void Start()
         {
-            if(Application.isMobilePlatform)
-                gameObject.SetActive(true);
-            else
-                gameObject.SetActive(false);
+            // if(Application.isMobilePlatform)
+            //     gameObject.SetActive(true);
+            // else
+            //     gameObject.SetActive(false);
 
             // basketControllerをヒエラルキー上から取得する
             _basketController = GameObject.Find("Basket").GetComponent<BasketController>();
@@ -48,7 +48,7 @@ namespace Projects.Mobile.Scripts
                 });
         }
 
-        void Update()
+        　void Update()
         {
             if (isPressed)
             {
