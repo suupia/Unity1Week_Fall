@@ -40,13 +40,17 @@ namespace Projects.Player.Scripts
                 .AddTo(this);
         }
 
-        void Move(float hInput)
+        /// <summary>
+        /// Mobileから呼ばれることを想定してpublicにしている
+        /// </summary>
+        /// <param name="hInput"></param>
+        public void Move(float hInput)
         {
            //  transform.position += new Vector3(hInput * speed, 0);
            var translation = new Vector3(hInput * speed, 0, 0);
            transform.Translate(translation * Time.deltaTime);
         }
-        bool CanMove(float hInput)
+        public bool CanMove(float hInput)
         {
             var movableWidth = _stageManager.StageWidth / 2.0f -
                                paddleObj.transform.localScale.x / 2.0f - _stageManager.HorizontalMargin;

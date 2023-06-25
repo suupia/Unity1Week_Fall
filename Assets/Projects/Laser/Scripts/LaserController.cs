@@ -34,8 +34,10 @@ public class LaserController : MonoBehaviour
         beamBody.transform.localScale = new Vector3(1, 0, 1);
     }
     
-    
-    void FireLaser()
+    /// <summary>
+    /// Mobileから呼ばれることを想定してpublicにしている
+    /// </summary>
+    public void FireLaser()
     {
         // Laser's direction (upwards in this case)
         Vector2 direction = Vector2.right;
