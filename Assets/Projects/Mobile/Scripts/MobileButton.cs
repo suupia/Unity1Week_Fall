@@ -3,6 +3,7 @@ using Projects.Player.Scripts;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using VContainer.Unity;
 using VContainer;
 
@@ -24,17 +25,22 @@ namespace Projects.Mobile.Scripts
         LaserController _laserController;
         
         IGameStateManager _gameStateManager;
+
+        [SerializeField] Image _testImage;
         
 
         void Start()
         {
-            // if(Application.isMobilePlatform)
-            //     gameObject.SetActive(true);
-            // else
-            //     gameObject.SetActive(false);
+            if(Application.isMobilePlatform)
+                gameObject.SetActive(true);
+            else
+                gameObject.SetActive(false);
+            
+            _testImage.color = Color.blue;
+
 
             // basketControllerをヒエラルキー上から取得する
-            _basketController = GameObject.Find("Basket").GetComponent<BasketController>();
+            _basketController = GameObject.FindWithTag("Player").GetComponent<BasketController>();
 
             // laserControllerは動的に生成されるため、Start()で取得できない
             
@@ -70,6 +76,7 @@ namespace Projects.Mobile.Scripts
         public void OnPointerDown(PointerEventData eventData)
         {
             isPressed = true;
+            _testImage.color = Color.red;
 
             if (buttonType == ButtonType.Space)
             {
@@ -89,6 +96,8 @@ namespace Projects.Mobile.Scripts
         public void OnPointerUp(PointerEventData eventData)
         {
             isPressed = false;
+            _testImage.color = Color.blue;
+
         }
     }
 }
