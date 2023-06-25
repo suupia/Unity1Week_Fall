@@ -26,8 +26,6 @@ namespace Projects.Mobile.Scripts
         
         IGameStateManager _gameStateManager;
 
-        [SerializeField] Image _testImage;
-        
 
         void Start()
         {
@@ -36,7 +34,6 @@ namespace Projects.Mobile.Scripts
             else
                 gameObject.SetActive(false);
             
-            _testImage.color = Color.blue;
 
 
             // basketControllerをヒエラルキー上から取得する
@@ -50,7 +47,7 @@ namespace Projects.Mobile.Scripts
             this.ObserveEveryValueChanged(x => x._gameStateManager.CurrentState)
                 .Subscribe(x =>
                 {
-                    gameObject.SetActive(x == GameState.Game);
+                    if(Application.isMobilePlatform)gameObject.SetActive(x == GameState.Game);
                 });
         }
 
@@ -76,7 +73,6 @@ namespace Projects.Mobile.Scripts
         public void OnPointerDown(PointerEventData eventData)
         {
             isPressed = true;
-            _testImage.color = Color.red;
 
             if (buttonType == ButtonType.Space)
             {
@@ -96,7 +92,6 @@ namespace Projects.Mobile.Scripts
         public void OnPointerUp(PointerEventData eventData)
         {
             isPressed = false;
-            _testImage.color = Color.blue;
 
         }
     }
