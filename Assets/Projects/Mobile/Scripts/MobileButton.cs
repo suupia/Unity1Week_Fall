@@ -24,7 +24,6 @@ namespace Projects.Mobile.Scripts
         BasketController _basketController;
         LaserController _laserController;
         
-        IGameStateManager _gameStateManager;
 
 
         void Start()
@@ -41,14 +40,7 @@ namespace Projects.Mobile.Scripts
 
             // laserControllerは動的に生成されるため、Start()で取得できない
             
-            // gameStateManagerをヒエラルキー上から取得する
-            _gameStateManager = GameObject.Find("LifeTimeScope").GetComponent<LifetimeScope>().Container.Resolve<IGameStateManager>();
 
-            this.ObserveEveryValueChanged(x => x._gameStateManager.CurrentState)
-                .Subscribe(x =>
-                {
-                    if(Application.isMobilePlatform)gameObject.SetActive(x == GameState.Game);
-                });
         }
 
         　void Update()
